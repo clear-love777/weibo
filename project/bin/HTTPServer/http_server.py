@@ -8,12 +8,13 @@ http server部分的主体程序
 将数据组织为Response格式发送给客户端
 '''
 from socket import *
-from config import *
+from project.bin.HTTPServer.config import *
 from select import *
 import sys
 import re
 import json
-from threading import Thread
+import signal
+from multiprocessing import *
 
 def serve(env):
     sock=socket()
@@ -28,55 +29,42 @@ def serve(env):
     #接受返回的数据
     data=sock.recv(1024*1024*10).decode()
     if data:
-        # print(data)
-        return json.loads(data) #返回一个字典
+        try:
+            return json.loads(data) #返回一个字典
+        except json.decoder.JSONDecodeError:
+            return
 
 #封装htto类
 class HTTPServer:
-    def __init__(self,HOST="0.0.0.0",PORT=4396):
-        self.host=HOST
-        self.port=PORT
+    def __init__(self):
         self.address=(HOST,PORT)
         self.sock=self.create_socket()
-        self.ep=epoll()
-        self.fdmap={}
     def serve_forever(self):
         self.sock.listen(3)
-        print("你启动了http服务,监听%s端口" % self.port)
-        self.ep.register(self.sock,EPOLLIN)
-        self.fdmap[self.sock.fileno()]=self.sock
+        print("你启动了http服务,监听%s端口" % PORT)
+        # 处理僵尸进程
+        signal.signal(signal.SIGCHLD, signal.SIG_IGN)
         while True:
             try:
-                events=self.ep.poll()
-            except:
+                conn,addr=self.sock.accept()
+                print("Connect from", addr)
+            except KeyboardInterrupt:
                 self.sock.close()
-                sys.exit("服务器关闭")
-            for fd,event in events:
-                if fd==self.sock.fileno():
-                    conn,addr=self.fdmap[fd].accept()
-                    print("Connect from", addr)
-                    self.ep.register(conn,EPOLLIN)
-                    self.fdmap[conn.fileno()]=conn
-                elif event & EPOLLIN:
-                    #浏览器发送了http请求
-                    self.handle(self.fdmap[fd])
-                    self.handle(self.fdmap[fd])
-                    self.ep.unregister(fd)
-                    del self.fdmap[fd]
-                    # request = self.handle(self.fdmap[fd])
-                    # if not request:
-                    #     self.ep.unregister(fd)
-                    #     del self.fdmap[fd]
-                    #     continue
-                    # self.request(self.fdmap[fd],data)
-                    # break
+                sys.exit("httpServer关闭")
+            except Exception as e:
+                print(e)
+                continue
+            else:
+                # 创建进程处理客户端请求
+                p = Process(target=self.handle, args=(conn,))
+                p.daemon = True  # 父进程服务结束,子进程也退出服务
+                p.start()
 
     def handle(self, conn):
         try:
             request = conn.recv(4096).decode()
         except OSError:
             return
-        # print(request)
         pattern=r"(?P<method>[A-Z]+)\s+(?P<info>/\S*)"
         try:
             env=re.match(pattern,request).groupdict()
@@ -84,7 +72,6 @@ class HTTPServer:
             conn.close()
             return
         else:
-            # print(env)
             data=serve(env)
             if data:
                 self.response(conn,data)
@@ -96,9 +83,6 @@ class HTTPServer:
         sock.setsockopt(SOL_SOCKET,SO_REUSEADDR,1)
         sock.bind(self.address)
         return sock
-
-    def request(self, param, data):
-        pass
 
     #组织http响应给浏览器发送
     def response(self, conn, data):
@@ -115,5 +99,5 @@ class HTTPServer:
         response_data=responseHeaders+responseBody
         conn.send(response_data.encode())
 if __name__ == '__main__':
-    httpd=HTTPServer(HOST,PORT)
+    httpd=HTTPServer()
     httpd.serve_forever()#启动服务

@@ -6,9 +6,10 @@ WebFrame部分
 '''
 from socket import *
 import json
-from settings import *
+from project.bin.WebFrame.settings import *
 from threading import Thread
-from urls import *
+from project.bin.WebFrame.urls import *
+import sys
 class Application:
     def __init__(self):
         self.sock=socket()
@@ -18,7 +19,11 @@ class Application:
         self.sock.listen(3)
         print("Running web server on %s"%frame_port)
         while True:
-            conn,addr=self.sock.accept()
+            try:
+                conn,addr=self.sock.accept()
+            except KeyboardInterrupt:
+                self.sock.close()
+                sys.exit("WebFrame关闭")
             print("Connect from",addr)
             t=Thread(target=self.handle,args=(conn,))
             t.setDaemon(True)
@@ -41,14 +46,14 @@ class Application:
         conn.send(response.encode())
         conn.close()
     def get_html(self, info):
+        print(info)
         if info=="/":
-            filename=STATIC_DIR+"/index.html"
+            filename=STATIC_DIR+"/login.html"
         else:
             filename=STATIC_DIR+info
         try:
             fd=open(filename)
         except:
-            print("哈哈哈哈")
             return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
         else:
             return {"status":"200","data":fd.read()}
