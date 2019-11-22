@@ -10,6 +10,7 @@ from project.bin.WebFrame.settings import *
 from threading import Thread
 from project.bin.WebFrame.urls import *
 import sys
+from time import sleep
 class Application:
     def __init__(self):
         self.sock=socket()
@@ -21,10 +22,10 @@ class Application:
         while True:
             try:
                 conn,addr=self.sock.accept()
+                print("Connect from", addr)
             except KeyboardInterrupt:
                 self.sock.close()
                 sys.exit("WebFrame关闭")
-            print("Connect from",addr)
             t=Thread(target=self.handle,args=(conn,))
             t.setDaemon(True)
             t.start()
@@ -35,7 +36,9 @@ class Application:
         if not request:
             return
         request=json.loads(request)
+        print(request)
         if request["method"]=="GET":
+            print(request["info"])
             if request["info"]=="/" or request["info"][-5:]==".html":
                 response=self.get_html(request["info"])
             else:
@@ -46,13 +49,15 @@ class Application:
         conn.send(response.encode())
         conn.close()
     def get_html(self, info):
-        print(info)
+        # print(info)
         if info=="/":
             filename=STATIC_DIR+"/login.html"
         else:
             filename=STATIC_DIR+info
         try:
+            # print(filename)
             fd=open(filename)
+            # print(fd)
         except:
             return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
         else:

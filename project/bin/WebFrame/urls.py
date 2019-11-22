@@ -1,4 +1,4 @@
-from view import *
+from project.bin.WebFrame.view import *
 #路由列表
 urls=[
     ("/time",show_time),

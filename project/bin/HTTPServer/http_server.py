@@ -13,8 +13,9 @@ from select import *
 import sys
 import re
 import json
-import signal
-from multiprocessing import *
+from time import sleep
+from threading import Thread
+from project.bin.HTTPServer.re_get import *
 
 def serve(env):
     sock=socket()
@@ -27,10 +28,21 @@ def serve(env):
     data=json.dumps(env)
     sock.send(data.encode())
     #接受返回的数据
-    data=sock.recv(1024*1024*10).decode()
-    if data:
+    datas=[]
+    data_result=""
+    while True:
+        data=sock.recv(1024*1024).decode()
+        if not data:
+            break
+        datas.append(data)
+    if datas:
+        for i in datas:
+            data_result+=i
+    else:
+        return
+    if data_result:
         try:
-            return json.loads(data) #返回一个字典
+            return json.loads(data_result) #返回一个字典
         except json.decoder.JSONDecodeError:
             return
 
@@ -42,12 +54,10 @@ class HTTPServer:
     def serve_forever(self):
         self.sock.listen(3)
         print("你启动了http服务,监听%s端口" % PORT)
-        # 处理僵尸进程
-        signal.signal(signal.SIGCHLD, signal.SIG_IGN)
         while True:
             try:
                 conn,addr=self.sock.accept()
-                print("Connect from", addr)
+                # print("Connect from", addr)
             except KeyboardInterrupt:
                 self.sock.close()
                 sys.exit("httpServer关闭")
@@ -55,27 +65,34 @@ class HTTPServer:
                 print(e)
                 continue
             else:
-                # 创建进程处理客户端请求
-                p = Process(target=self.handle, args=(conn,))
-                p.daemon = True  # 父进程服务结束,子进程也退出服务
-                p.start()
+                t = Thread(target=self.handle, args=(conn,))
+                t.setDaemon(True)
+                t.start()
 
     def handle(self, conn):
         try:
+            pattern = r"(?P<method>[A-Z]+)\s+(?P<info>/\S*)"
             request = conn.recv(4096).decode()
+            try:
+                env = re.match(pattern, request).groupdict()
+            except:
+                conn.close()
+                return
+            if env["info"]=="/":
+                data = serve(env)
+                if data:
+                    self.response(conn, data)
+                return request
+            else:
+                re_request=re.match(r"GET /.+ HTTP/1.1",request).group().replace("GET /","").replace(" HTTP/1.1","")
+                re_request=res(re_request)
         except OSError:
             return
-        pattern=r"(?P<method>[A-Z]+)\s+(?P<info>/\S*)"
-        try:
-            env=re.match(pattern,request).groupdict()
-        except:
-            conn.close()
-            return
-        else:
+        if re_request == "html":
             data=serve(env)
             if data:
                 self.response(conn,data)
-        return request
+            return request
 
     #创建套接字
     def create_socket(self):
@@ -86,6 +103,7 @@ class HTTPServer:
 
     #组织http响应给浏览器发送
     def response(self, conn, data):
+        # print(data)
         if data["status"]=="200":
             responseHeaders="HTTP/1.1 200 OK\r\n"
             responseHeaders+="Content-Type:text/html\r\n"
@@ -97,6 +115,7 @@ class HTTPServer:
             responseHeaders += "\r\n"
             responseBody = data["data"]
         response_data=responseHeaders+responseBody
+        print(response_data)
         conn.send(response_data.encode())
 if __name__ == '__main__':
     httpd=HTTPServer()
