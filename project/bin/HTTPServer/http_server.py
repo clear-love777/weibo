@@ -75,6 +75,7 @@ class HTTPServer:
             request = conn.recv(4096).decode()
             try:
                 env = re.match(pattern, request).groupdict()
+                print(env)
             except:
                 conn.close()
                 return
@@ -85,7 +86,9 @@ class HTTPServer:
                 return request
             else:
                 re_request=re.match(r"GET /.+ HTTP/1.1",request).group().replace("GET /","").replace(" HTTP/1.1","")
+                # print(re_request)
                 re_request=res(re_request)
+                # print(re_request)
         except OSError:
             return
         if re_request == "html":

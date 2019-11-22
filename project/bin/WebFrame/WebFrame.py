@@ -10,7 +10,7 @@ from project.bin.WebFrame.settings import *
 from threading import Thread
 from project.bin.WebFrame.urls import *
 import sys
-from time import sleep
+import os
 class Application:
     def __init__(self):
         self.sock=socket()
@@ -59,7 +59,9 @@ class Application:
             fd=open(filename)
             # print(fd)
         except:
-            return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
+
+            # return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
+            return {"status":"404","data":open("/home/tarena/save/project/bin/WebFrame/static/404.html").read()}
         else:
             return {"status":"200","data":fd.read()}
     def get_data(self,info):
