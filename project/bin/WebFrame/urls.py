@@ -3,5 +3,6 @@ from project.bin.WebFrame.view import *
 urls=[
     ("/time",show_time),
     ("/ai",ai),
-    ("/bye",bye)
+    ("/bye",bye),
+    ("/img/author-main1.jpg",img_author_main1)
 ]

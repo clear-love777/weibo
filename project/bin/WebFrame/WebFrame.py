@@ -11,6 +11,8 @@ from threading import Thread
 from project.bin.WebFrame.urls import *
 import sys
 import os
+import base64
+import re
 class Application:
     def __init__(self):
         self.sock=socket()
@@ -45,7 +47,27 @@ class Application:
                 response=self.get_data(request["info"])
         elif request["method"]=="POST":
             pass
+        # print(base64.b64decode(response["data"]))
+        # print(response["data"])
+        # response["data"] = base64.b64decode(response["data"])
+        # a=base64.b64decode(response["data"])
         response=json.dumps(response)
+        # str_byte=response.replace("\"status\": \"200\"","").replace("{\"data\": \"","").replace("\", }","").replace("{, \"data\": \"","").replace("\"}","")
+        # head=str_byte[:10]
+        # foot=str_byte[-10:]
+        # head_index=response.find(head)
+        # foot_index=response.find(foot)+10
+        # response="{\"status\":\"200\",\"data\":".encode() + b"\"" + base64.b64decode(base64.b64encode(response["data"])) + b"\"}"
+        # response="{\"status\":\"200\",\"data\":".encode() + b"\"" + base64.b64encode(response["data"]) + b"\"}"
+        # response="{\"status\":\"200\",\"data\":".encode() + b"\"" + "哈哈哈".encode() + b"\"}"
+        print(response)
+        # response1=response.replace(response[head_index:foot_index],base64.b64decode(str_byte))
+        # print(response1)
+        # print(head,foot)
+        # print(re.search(r"data\": \".+\"",response).group().replace("data\": ","").replace("\"",""))
+        # print(base64.b64decode(response["data"]))
+        # print(response["data"])
+        # conn.send(response.encode())
         conn.send(response.encode())
         conn.close()
     def get_html(self, info):
@@ -67,7 +89,12 @@ class Application:
     def get_data(self,info):
         for url,func in urls:
             if info==url:
-                return {"status":"200","data":func()}
+                # print(type(base64.b64encode(func()).decode()))
+                if TypeError:
+                    return {"status":"200","data":func()}
+                else:
+                    return {"status":"200","data":func()}
+
         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
 if __name__ == '__main__':
     app=Application()

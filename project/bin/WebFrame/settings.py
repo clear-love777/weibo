@@ -11,4 +11,3 @@ DEBUG= True
 
 #静态网页位置
 STATIC_DIR=os.path.join(os.path.abspath(os.path.dirname(__file__)), "./static")
-print(STATIC_DIR)
