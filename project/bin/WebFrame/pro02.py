@@ -20,7 +20,7 @@ if __name__ == "__main__":
     f=open("./static/img/author-main1.jpg","rb")
     # print(f.read())
     a=base64.b64decode(base64.b64encode(f.read()))
-    print(type(a))
+    print(a)
     # a=b"\""+convert("./static/img/author-main1.jpg")+b"\"}"
     # b="{\"status\":\"200\",\"data\":".encode()+b"\""+base64.b64decode(response["data"])+b"\"}"
     # c=b+a

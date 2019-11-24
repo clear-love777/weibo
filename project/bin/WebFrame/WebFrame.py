@@ -38,37 +38,25 @@ class Application:
         if not request:
             return
         request=json.loads(request)
-        print(request)
+        # print(request)
         if request["method"]=="GET":
             print(request["info"])
             if request["info"]=="/" or request["info"][-5:]==".html":
                 response=self.get_html(request["info"])
+                response = json.dumps(response)
+                conn.send(response.encode())
             else:
                 response=self.get_data(request["info"])
+                # response["data"]=base64.b64decode(response["data"])
+                s=str(response["data"],"utf-8")
+                response="{\"status\":\"200\",\"data\":\""+s+"\"}"
+                print(response.encode())
+                # response = json.dumps(response)
+                # conn.send(response.encode())
+                conn.send(response.encode())
         elif request["method"]=="POST":
             pass
-        # print(base64.b64decode(response["data"]))
-        # print(response["data"])
-        # response["data"] = base64.b64decode(response["data"])
-        # a=base64.b64decode(response["data"])
-        response=json.dumps(response)
-        # str_byte=response.replace("\"status\": \"200\"","").replace("{\"data\": \"","").replace("\", }","").replace("{, \"data\": \"","").replace("\"}","")
-        # head=str_byte[:10]
-        # foot=str_byte[-10:]
-        # head_index=response.find(head)
-        # foot_index=response.find(foot)+10
-        # response="{\"status\":\"200\",\"data\":".encode() + b"\"" + base64.b64decode(base64.b64encode(response["data"])) + b"\"}"
-        # response="{\"status\":\"200\",\"data\":".encode() + b"\"" + base64.b64encode(response["data"]) + b"\"}"
-        # response="{\"status\":\"200\",\"data\":".encode() + b"\"" + "哈哈哈".encode() + b"\"}"
-        print(response)
-        # response1=response.replace(response[head_index:foot_index],base64.b64decode(str_byte))
-        # print(response1)
-        # print(head,foot)
-        # print(re.search(r"data\": \".+\"",response).group().replace("data\": ","").replace("\"",""))
-        # print(base64.b64decode(response["data"]))
-        # print(response["data"])
         # conn.send(response.encode())
-        conn.send(response.encode())
         conn.close()
     def get_html(self, info):
         # print(info)
@@ -91,7 +79,7 @@ class Application:
             if info==url:
                 # print(type(base64.b64encode(func()).decode()))
                 if TypeError:
-                    return {"status":"200","data":func()}
+                    return {"status":"200","data":base64.b64encode(func())}
                 else:
                     return {"status":"200","data":func()}
 

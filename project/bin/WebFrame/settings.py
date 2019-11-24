@@ -11,3 +11,10 @@ DEBUG= True
 
 #静态网页位置
 STATIC_DIR=os.path.join(os.path.abspath(os.path.dirname(__file__)), "./static")
+
+#请求地址
+HTTP_HOST="http://127.0.0.1:8080"
+
+#项目地址
+Project_Path=os.getcwd().replace(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.getcwd())))),"")
+Request_path=HTTP_HOST+Project_Path
