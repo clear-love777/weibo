@@ -13,7 +13,13 @@ import sys
 import os
 import base64
 import re
+from urllib import request
+import requests
+
+
 class Application:
+
+
     def __init__(self):
         self.sock=socket()
         self.sock.setsockopt(SOL_SOCKET,SO_REUSEADDR,DEBUG)
@@ -38,50 +44,48 @@ class Application:
         if not request:
             return
         request=json.loads(request)
-        # print(request)
         if request["method"]=="GET":
-            print(request["info"])
+            print(request)
+            # print(request["info"])
             if request["info"]=="/" or request["info"][-5:]==".html":
                 response=self.get_html(request["info"])
-                response = json.dumps(response)
-                conn.send(response.encode())
             else:
-                response=self.get_data(request["info"])
-                # response["data"]=base64.b64decode(response["data"])
-                s=str(response["data"],"utf-8")
-                response="{\"status\":\"200\",\"data\":\""+s+"\"}"
-                print(response.encode())
-                # response = json.dumps(response)
-                # conn.send(response.encode())
-                conn.send(response.encode())
+                info = re.search(r"/.+\?", request["info"]).group().rstrip("?")
+                self.post = re.search(r"\?.+", request["info"]).group().lstrip("?").split("&")
+                response = self.get_data(info)
+                # response=self.get_data(request["info"])
+
         elif request["method"]=="POST":
-            pass
-        # conn.send(response.encode())
+            print(request)
+            if request["info"]=="/" or request["info"][-5:]==".html":
+                response=self.get_html(request["info"])
+            else:
+                # info=re.search(r"/.+\?", request["info"]).group().rstrip("?")
+                # post=re.search(r"\?.+",request["info"]).group().lstrip("?").split("&")
+                # print(post)
+                # response=self.get_data(info)
+                response=self.get_data(request["info"])
+        response = json.dumps(response)
+        conn.send(response.encode())
         conn.close()
     def get_html(self, info):
-        # print(info)
         if info=="/":
             filename=STATIC_DIR+"/login.html"
         else:
             filename=STATIC_DIR+info
         try:
-            # print(filename)
             fd=open(filename)
-            # print(fd)
         except:
-
-            # return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
             return {"status":"404","data":open("/home/tarena/save/project/bin/WebFrame/static/404.html").read()}
         else:
             return {"status":"200","data":fd.read()}
     def get_data(self,info):
         for url,func in urls:
             if info==url:
-                # print(type(base64.b64encode(func()).decode()))
-                if TypeError:
-                    return {"status":"200","data":base64.b64encode(func())}
-                else:
+                try:
                     return {"status":"200","data":func()}
+                except:
+                    return {"status":"500","data":open(STATIC_DIR+"/500.html").read()}
 
         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
 if __name__ == '__main__':

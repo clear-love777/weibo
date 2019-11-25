@@ -76,6 +76,8 @@
 				color: #fff;
 			}
 		</style>
+		<link rel="shortcut icon" href="http://127.0.0.1:63342/save/project/bin/WebFrame/static/img/favicon.ico" type="image/x-icon" />
+
 	</head>
 	<body>
 
@@ -83,15 +85,16 @@
 			<div id="box">
 				<div class="title">登录</div>
 				<div class="input">
-					<input type="text" id="username" value="" placeholder="用户名" />
+					<form name=”form” method="get" action="/login">
+					<input type="text" id="username" name="username" placeholder="用户名" />
 					<br>
-					<input type="password" id="password" placeholder="密码" />
-<!--					<img src="http://127.0.0.1:63342/save/project/bin/WebFrame/static/img/500.png">-->
-					<img src='img/author-main1.jpg'>
+					<input type="password" id="password" name="password" placeholder="密码" />
+					<!--<input type="password" id="password1" name="password1" placeholder="确认密码" />-->
 					<br>
-					<button type="button" onclick="dict()" class="btn" >登录</button>
-                    <!--<a id="dict" href="dict.html">登录</a>-->
-					<button type="button" onclick="getuser()">注册</button>
+						<input type="submit" name="submit" value="登录">
+					<!--<button type="button" onclick="dict()" class="btn" >登录</button>-->
+						<input type="button" value="注册">
+					</form>
 				</div>
 			</div>
 		</div>
@@ -124,6 +127,10 @@
 			}else{
 				alert("两次输入的密码不一样");
 			}
+		}
+		function checkForm()
+		{
+			alert("登录成功！");
 		}
 	</script>
 </html>

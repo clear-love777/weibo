@@ -4,5 +4,6 @@ urls=[
     ("/time",show_time),
     ("/ai",ai),
     ("/bye",bye),
-    ("/img/author-main1.jpg",img_author_main1)
+    ("/login",login),
+    ("/register",register)
 ]

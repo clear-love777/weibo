@@ -123,7 +123,6 @@ class HTTPServer:
             responseHeaders += "\r\n"
             responseBody = data["data"]
         response_data=responseHeaders+responseBody
-        print(response_data)
         conn.send(response_data.encode())
 if __name__ == '__main__':
     httpd=HTTPServer()
