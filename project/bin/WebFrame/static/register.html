@@ -118,18 +118,18 @@
         <a class = "logo">LOGO</a>
         <a class="pg_dl" id="i77">注册</a>
     </div>
-    <form name="tijiao" method="post" onsubmit="return check()" action="winford.top">
+    <form id="myform" name="tijiao" method="get" onsubmit="return check()" action="">
         <div class="left"></div>
         <div class="pg_body">
                 <div class="menu">用户名:</div>
                     <div class="kong">
-                        <input id="text1" type="text" name="01" placeholder="请输入用户名" onblur="check()"><span id="div1"
+                        <input id="text1" type="text" name="name" placeholder="请输入用户名" onblur="check()"><span id="div1"
                                                                                                             class="tian" style="margin-top: 4px">*(为必填)</span>
                     </div>
 
                 <div class="menu">真实姓名:</div>
                     <div class="kong">
-                        <input id="i2" type="text" name="01">
+                        <input id="i2" type="text" name="true_name">
                     </div>
                 <div class="menu">性别:</div>
                     <div class="kong" style="width:200px;">
@@ -138,21 +138,21 @@
                     </div>
                 <div class="menu">密码:</div>
                     <div class="kong">
-                        <input id="text2" type="password" name="02" onblur="check()">
+                        <input id="text2" type="password" name="password" onblur="check()">
                         <span id="div2" class="tian" style="margin-top: -25px">*(为必填)</span>
                     </div>
                 <div class="menu">确认密码:</div>
                     <div class="kong">
-                        <input id="text3" type="password" name="01" onblur="check()">
+                        <input id="text3" type="password" name="confirm_password" onblur="check()">
                         <span id="div3" class="tian">*(为必填)</span>
                     </div>
                 <div class="menu">电话号码:</div>
                     <div class="kong">
-                        <input id="i5" type="text" name="01">
+                        <input id="i5" type="text" name="tel">
                     </div>
                 <div class="menu">邮箱地址:</div>
                     <div class="kong">
-                        <input id="text4" type="text" name="01" onblur="check()">
+                        <input id="text4" type="text" name="e_mail" onblur="check()">
                         <span id="div4" class="tian">*(为必填)</span>
                     </div>
                 <div class="menu">头像上传:    </div>
@@ -161,22 +161,28 @@
                 </div>
                 <div class="menu">爱好:</div>
                     <div class="kong" style="width: 300px;">
-                        撩妹 <input type="checkbox" name="favor">
+                        听歌 <input type="checkbox" name="favor">
                         写代码 <input type="checkbox" name="favor">
                         篮球 <input type="checkbox" name="favor">
                         足球 <input type="checkbox" name="favor">
                     </div>
                 <div class="menu">个人签名:</div>
                 <div class="kong">
-                    <textarea name="meno" style="width: 280px;height: 40px;">
+                    <textarea name="idiograph" style="width: 280px;height: 40px;">
                     有点懒。。。。
                     </textarea>
                 </div>
         </div>
         <div class="can">
-            <input id="i111" type="submit" name="002" value="注  册">
+            <!--<input id="i111" type="submit" name="commit" value="regis">-->
+            <button id="i111" type="submit" name="submit" value="regis_message"
+            onclick="this.form.action = '/regis_submit';">
+                注册</button>
             <p style="width: 200px;display: inline-block;"></p>
-            <input id="i222" type="button" name="004" value="取  消">
+            <!--<input id="i222" type="button" name="exit" value="取  消">-->
+            <button id="i112" type="submit" name="submit" value="exit"
+            onclick="this.form.action = '/exit';">
+                取消</button>
 
         </div>
     </form>
@@ -295,12 +301,24 @@
         }
 
             function check(){
-            if (checkname() && checkpassword() && checkrepassword() && checkEmail()) {
-            return true;
+            var regis_submit=document.getElementById("i111").value;
+            var exit=document.getElementById("i112").value;
+            var submit=document.getElementById("myform").action;
+            var localhostPaht=window.location.protocol + '//' + window.location.host;
+            <!--alert(regis_submit);-->
+            <!--alert(exit);-->
+            <!--alert(submit);-->
+            <!--alert(localhostPaht+"/regis_submit");-->
+            if(submit==localhostPaht+"/regis_submit"){
+                if (checkname() && checkpassword() && checkrepassword() && checkEmail()) {
+                return true;
+                }
+                else {
+                return false;
+                }
+            }else{
+                return true;
             }
-            else {
-            return false;
-        }
     }
     </script>
 </body>

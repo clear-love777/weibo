@@ -78,6 +78,7 @@
 		</style>
 		<link rel="shortcut icon" href="http://127.0.0.1:63342/save/project/bin/WebFrame/static/img/favicon.ico" type="image/x-icon" />
 
+
 	</head>
 	<body>
 
@@ -85,52 +86,76 @@
 			<div id="box">
 				<div class="title">登录</div>
 				<div class="input">
-					<form name=”form” method="get" action="/login">
+					<form id=”myform” method="get" action="">
 					<input type="text" id="username" name="username" placeholder="用户名" />
 					<br>
 					<input type="password" id="password" name="password" placeholder="密码" />
 					<!--<input type="password" id="password1" name="password1" placeholder="确认密码" />-->
 					<br>
-						<input type="submit" name="submit" value="登录">
+						<!--<input type="button" value="登 录" onclick="checkForm();"/>-->
+						<button type="submit" id="login" name="submit" value="login"
+								onclick="this.form.action = '/login';" >登录
+						</button>
 					<!--<button type="button" onclick="dict()" class="btn" >登录</button>-->
-						<input type="button" value="注册">
+						<button type="submit" id="regis" name="submit" value="regis"
+							   	onclick="this.form.action = '/regis';">注册
+						</button>
 					</form>
 				</div>
 			</div>
 		</div>
 
 	</body>
-	<script type="text/javascript">
-		function getuser() {
+	<script>
+	function checkForm(){
+			var form=document.getElementById("myform");
+			alert(form);
+			<!--document.getElementById("myform").action="hahahaha/";-->
+			<!--form.submit();-->
+			return true;
+			var post_login=document.getElementById("login").value;
+			var post_regis=document.getElementById("regis").value;
+			alert("haha");
 			var username = document.getElementById("username").value;
 			var password = document.getElementById("password").value;
-			var password1 = document.getElementById("password1").value;
-			testing(username, password,password1)
-			//alert("username:"+username+"\n"+"password:"+password);
+			<!--var password1 = document.getElementById("password1").value;-->
+			if(document.getElementByName("myform").submit==post_login)
+				alert("登录成功！");
+				alert("/login?username="+username+"s&password="+password+"&submit=login");
+				<!--return "/login?username=%s&password=%s&submit=login"%(username,password)-->
+			elseif(document.getElementByName("myform").submit==post_regis)
+				alert("注册");
+				<!--return "/regis"-->
 		}
+		<!--function getuser() {-->
+			<!--var username = document.getElementById("username").value;-->
+			<!--var password = document.getElementById("password").value;-->
+			<!--var password1 = document.getElementById("password1").value;-->
+			<!--testing(username, password,password1)-->
+			<!--//alert("username:"+username+"\n"+"password:"+password);-->
+		<!--}-->
 
-		function testing(username, password, password1) {
-			var tmp = username && password;
-			if (tmp == "") {
-				alert("请填写完整信息");
-				return 0;
-			}
-			if (username.length < 6 || username.length > 16) {
-				alert("用户名长度为：6-16位")
-				return 0;
-			}
-			if (password<6 || password1<6)
-			{
-				alert("密码长度错误");
-			}else if(password == password1){
-				alert("username:" + username + "\n" + "password:" + password);
-			}else{
-				alert("两次输入的密码不一样");
-			}
-		}
-		function checkForm()
-		{
-			alert("登录成功！");
-		}
+		<!--function testing(username, password, password1) {-->
+			<!--var tmp = username && password;-->
+			<!--if (tmp == "") {-->
+				<!--alert("请填写完整信息");-->
+				<!--return 0;-->
+			<!--}-->
+			<!--if (username.length < 6 || username.length > 16) {-->
+				<!--alert("用户名长度为：6-16位")-->
+				<!--return 0;-->
+			<!--}-->
+			<!--if (password<6 || password1<6)-->
+			<!--{-->
+				<!--alert("密码长度错误");-->
+			<!--}else if(password == password1){-->
+				<!--alert("username:" + username + "\n" + "password:" + password);-->
+			<!--}else{-->
+				<!--alert("两次输入的密码不一样");-->
+			<!--}-->
+		<!--}-->
+
+
+
 	</script>
 </html>

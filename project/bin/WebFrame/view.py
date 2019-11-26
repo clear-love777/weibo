@@ -1,13 +1,15 @@
-from project.bin.WebFrame.settings import *
 from project.bin.WebFrame.sql import *
 sql=sql()
-def show_time():
+def show_time(*args):
     import time
     return time.ctime()
-def ai():
+def ai(*args):
     return "what is ai"
-def bye():
+def bye(*args):
     return "Good bye"
+def index(*args):
+    with open(STATIC_DIR + "/login.html") as f:
+        return f.read()
 def login(name="root",pwd="123456"):
     if sql.login(name,pwd):
         with open(STATIC_DIR+"/mobile-index.html") as f:
@@ -15,6 +17,11 @@ def login(name="root",pwd="123456"):
     else:
         with open(STATIC_DIR+"/login.html") as f:
             return f.read()
-def register():
+def register(*args):
     with open(STATIC_DIR + "/register.html") as f:
             return f.read()
+def register_submit(*args):
+    return "asdasdasd"
+def exit(*args):
+    with open(STATIC_DIR + "/login.html") as f:
+        return f.read()

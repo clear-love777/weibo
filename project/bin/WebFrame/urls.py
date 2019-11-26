@@ -4,6 +4,9 @@ urls=[
     ("/time",show_time),
     ("/ai",ai),
     ("/bye",bye),
+    ("/",index),
     ("/login",login),
-    ("/register",register)
+    ("/regis",register),
+    ("/regis_submit",register_submit),
+    ("/exit",exit)
 ]

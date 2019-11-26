@@ -15,7 +15,7 @@ import base64
 import re
 from urllib import request
 import requests
-
+import flask
 
 class Application:
 
@@ -50,25 +50,38 @@ class Application:
             if request["info"]=="/" or request["info"][-5:]==".html":
                 response=self.get_html(request["info"])
             else:
-                info = re.search(r"/.+\?", request["info"]).group().rstrip("?")
-                self.post = re.search(r"\?.+", request["info"]).group().lstrip("?").split("&")
-                response = self.get_data(info)
-                # response=self.get_data(request["info"])
+                try:
+                    info = re.search(r"/.+\?", request["info"]).group().rstrip("?")
+                except:
+                    info=False
+                if info:
+                    print(request["info"])
+                    post = re.search(r"\?.+", request["info"]).group().lstrip("?").split("&")
+                    post_dict={}
+                    for i,item  in enumerate(post):
+                        try:
+                            key=re.search(r".+=",item).group().rstrip("=")
+                            value=re.search(r"=.+",item).group().lstrip("=")
+                            post_dict[key]=value
+                        except:
+                            break
+                    if not post_dict and info=="/login":
+                        info="/"
+                    response = self.get_data(info, post_dict)
+                else:
+                    response = self.get_data(request["info"],None)
 
         elif request["method"]=="POST":
-            print(request)
+            # print(request)
             if request["info"]=="/" or request["info"][-5:]==".html":
                 response=self.get_html(request["info"])
             else:
-                # info=re.search(r"/.+\?", request["info"]).group().rstrip("?")
-                # post=re.search(r"\?.+",request["info"]).group().lstrip("?").split("&")
-                # print(post)
-                # response=self.get_data(info)
-                response=self.get_data(request["info"])
+                response=self.get_data(request["info"],None)
         response = json.dumps(response)
         conn.send(response.encode())
         conn.close()
     def get_html(self, info):
+        print(info)
         if info=="/":
             filename=STATIC_DIR+"/login.html"
         else:
@@ -79,14 +92,32 @@ class Application:
             return {"status":"404","data":open("/home/tarena/save/project/bin/WebFrame/static/404.html").read()}
         else:
             return {"status":"200","data":fd.read()}
-    def get_data(self,info):
+    def get_data(self,info,post):
+        # print(info)
+        # print(post)
         for url,func in urls:
             if info==url:
-                try:
-                    return {"status":"200","data":func()}
-                except:
-                    return {"status":"500","data":open(STATIC_DIR+"/500.html").read()}
-
+                if post:
+                    try:
+                        list_post=[]
+                        for i in post:
+                            if not i:
+                                continue
+                            list_post.append(i)
+                        # if "submit" in list_post and "username" in list_post and "password" in list_post:
+                        if "submit" in list_post:
+                            if post["submit"]=="login":
+                                return {"status":"200","data":func(post["username"],post["password"])}
+                            elif post["submit"]=="regis":
+                                return {"status":"200","data":func()}
+                            elif post["submit"]=="regis_message":
+                                return {"status": "200", "data": func()}
+                            elif post["submit"]=="exit":
+                                return {"status":"200","data":func()}
+                    except Exception as e:
+                        return {"status":"500","data":open(STATIC_DIR+"/500.html").read()}
+                if info!="/login" and info!="regis":
+                    return {"status": "200", "data": func()}
         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
 if __name__ == '__main__':
     app=Application()
