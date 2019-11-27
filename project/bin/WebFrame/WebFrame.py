@@ -99,7 +99,7 @@ class Application:
             return {"status":"200","data":fd.read()}
     def get_data(self,info,post):
         # print(info)
-        # print(post)
+        print(post)
         for url,func in urls:
             if info==url:
                 if post:
@@ -118,8 +118,7 @@ class Application:
                             elif post["submit"]=="regis":
                                 return {"status":"200","data":func()}
                             elif post["submit"]=="regis_submit":
-                                return {"status": "200", "data": func(post["name"],post["password"],
-                                                                      post["e_mail"])}
+                                return {"status": "200", "data": func(post["name"],post["password"])}
                             elif post["submit"]=="exit":
                                 return {"status":"200","data":func()}
                     except Exception as e:

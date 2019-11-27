@@ -36,15 +36,15 @@ class sql:
             return True
         else:
             return False
-    def regis(self,name,pwd,email):
+    def regis(self,name,pwd):
         sql="select * from user where username=%s"
         self.cur.execute(sql,name)
         r=self.cur.fetchone()
         if r:
             return False
         else:
-            sql="insert into user(username,password,email) values(%s,%s,%s)"
-            r=self.cur.execute(sql,[name,pwd,email])
+            sql="insert into user(username,password) values(%s,%s)"
+            r=self.cur.execute(sql,[name,pwd])
             if r>0:
                 self.db.commit()
                 return True

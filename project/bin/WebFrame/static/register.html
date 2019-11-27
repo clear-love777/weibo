@@ -129,10 +129,10 @@
                                                                                                             class="tian" style="margin-top: 4px">*(为必填)</span>
                     </div>
 
-                <div class="menu">真实姓名:</div>
-                    <div class="kong">
-                        <input id="i2" type="text" name="true_name">
-                    </div>
+                <!--<div class="menu">昵称:</div>-->
+                    <!--<div class="kong">-->
+                        <!--<input id="i2" type="text" name="nickname">-->
+                    <!--</div>-->
                 <div class="menu">性别:</div>
                     <div class="kong" style="width:200px;">
                          男<input type="radio" name="gender" value="1">
@@ -148,26 +148,26 @@
                         <input id="text3" type="password" name="confirm_password" onblur="check()">
                         <span id="div3" class="tian">*(为必填)</span>
                     </div>
-                <div class="menu">电话号码:</div>
-                    <div class="kong">
-                        <input id="i5" type="text" name="tel">
-                    </div>
-                <div class="menu">邮箱地址:</div>
-                    <div class="kong">
-                        <input id="text4" type="text" name="e_mail" onblur="check()">
-                        <span id="div4" class="tian">*(为必填)</span>
-                    </div>
+                <!--<div class="menu">电话号码:</div>-->
+                    <!--<div class="kong">-->
+                        <!--<input id="i5" type="text" name="tel">-->
+                    <!--</div>-->
+                <!--<div class="menu">邮箱地址:</div>-->
+                    <!--<div class="kong">-->
+                        <!--<input id="text4" type="text" name="e_mail" onblur="check()">-->
+                        <!--<span id="div4" class="tian">*(为必填)</span>-->
+                    <!--</div>-->
                 <div class="menu">头像上传:    </div>
                     <div class="kong">
                         <input type="file" name="file" value="选择头像" accept="image/*">
                 </div>
-                <div class="menu">爱好:</div>
-                    <div class="kong" style="width: 300px;">
-                        听歌 <input type="checkbox" name="favor">
-                        写代码 <input type="checkbox" name="favor">
-                        篮球 <input type="checkbox" name="favor">
-                        足球 <input type="checkbox" name="favor">
-                    </div>
+                <!--<div class="menu">爱好:</div>-->
+                    <!--<div class="kong" style="width: 300px;">-->
+                        <!--听歌 <input type="checkbox" name="favor">-->
+                        <!--写代码 <input type="checkbox" name="favor">-->
+                        <!--篮球 <input type="checkbox" name="favor">-->
+                        <!--足球 <input type="checkbox" name="favor">-->
+                    <!--</div>-->
                 <div class="menu">个人签名:</div>
                 <div class="kong">
                     <textarea name="idiograph" style="width: 280px;height: 40px;">
@@ -261,47 +261,47 @@
                 return true;
         }
         //邮箱验证
-        function checkEmail(){
-            var div = document.getElementById("div4");
-            div.innerHTML = "";
-            var email = document.tijiao.text4.value;
-            var sw = email.indexOf("@", 0);
-            var sw1 = email.indexOf(".", 0);
-            var tt = sw1 - sw;
-            if (email.length == 0) {
-            div.innerHTML = "邮箱不能为空";
-            document.tijiao.text4.focus();
-            return false;
-        }
+        <!--function checkEmail(){-->
+            <!--var div = document.getElementById("div4");-->
+            <!--div.innerHTML = "";-->
+            <!--var email = document.tijiao.text4.value;-->
+            <!--var sw = email.indexOf("@", 0);-->
+            <!--var sw1 = email.indexOf(".", 0);-->
+            <!--var tt = sw1 - sw;-->
+            <!--if (email.length == 0) {-->
+            <!--div.innerHTML = "邮箱不能为空";-->
+            <!--document.tijiao.text4.focus();-->
+            <!--return false;-->
+        <!--}-->
 
-            if (email.indexOf("@", 0) == -1) {
-            div.innerHTML = "必须包含@符号";
-            document.tijiao.text4.select();
-            return false;
-        }
+            <!--if (email.indexOf("@", 0) == -1) {-->
+            <!--div.innerHTML = "必须包含@符号";-->
+            <!--document.tijiao.text4.select();-->
+            <!--return false;-->
+        <!--}-->
 
-            if (email.indexOf(".", 0) == -1) {
-            div.innerHTML = "必须包含.符号";
-            document.tijiao.text4.select();
-            return false;
-        }
+            <!--if (email.indexOf(".", 0) == -1) {-->
+            <!--div.innerHTML = "必须包含.符号";-->
+            <!--document.tijiao.text4.select();-->
+            <!--return false;-->
+        <!--}-->
 
-            if (tt == 1) {
-            div.innerHTML = "@和.不能一起";
-            document.tijiao.text4.select();
-            return false;
-        }
+            <!--if (tt == 1) {-->
+            <!--div.innerHTML = "@和.不能一起";-->
+            <!--document.tijiao.text4.select();-->
+            <!--return false;-->
+        <!--}-->
 
-            if (sw > sw1) {
-            div.innerHTML  = "@符号必须在.之前";
-            document.tijiao.text4.select();
-            return false;
-        }
-            else {
-            return true;
-            }
-        return ture;
-        }
+            <!--if (sw > sw1) {-->
+            <!--div.innerHTML  = "@符号必须在.之前";-->
+            <!--document.tijiao.text4.select();-->
+            <!--return false;-->
+        <!--}-->
+            <!--else {-->
+            <!--return true;-->
+            <!--}-->
+        <!--return ture;-->
+        <!--}-->
 
             function check(){
             var regis_submit=document.getElementById("i111").value;

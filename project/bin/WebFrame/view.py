@@ -20,10 +20,10 @@ def login(name,pwd):
 def register(*args):
     with open(STATIC_DIR + "/register.html") as f:
             return f.read()
-def register_submit(name,pwd,email):
+def register_submit(name,pwd):
     fs=open(STATIC_DIR + "/regis-success.html").read()
     ff=open(STATIC_DIR + "/regis-fail.html").read()
-    if sql.regis(name,pwd,email):
+    if sql.regis(name,pwd):
         return fs
     else:
         return ff
