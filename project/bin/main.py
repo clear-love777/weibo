@@ -5,16 +5,12 @@ import signal
 import sys
 import os
 if __name__ == '__main__':
-
     http=hs.HTTPServer()
     web=wf.Application()
     signal.signal(signal.SIGCHLD, signal.SIG_IGN)
-    try:
-        ph=Process(target=http.serve_forever)
-        pw=Process(target=web.start)
-        ph.start()
-        pw.start()
-    except KeyboardInterrupt as e:
-        sys.exit("exit")
+    ph=Process(target=http.serve_forever)
+    pw=Process(target=web.start)
+    ph.start()
+    pw.start()
 
 

@@ -15,7 +15,6 @@ import base64
 import re
 from urllib import request
 import requests
-import flask
 
 class Application:
 
