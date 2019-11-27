@@ -55,7 +55,7 @@ class Application:
                 except:
                     info=False
                 if info:
-                    print(request["info"])
+                    # print(request["info"])
                     post = re.search(r"\?.+", request["info"]).group().lstrip("?").split("&")
                     post_dict={}
                     for i,item  in enumerate(post):
@@ -64,7 +64,7 @@ class Application:
                             value=re.search(r"=.+",item).group().lstrip("=")
                             post_dict[key]=value
                         except:
-                            break
+                            continue
                     if not post_dict and info=="/login":
                         info="/"
                     response = self.get_data(info, post_dict)
@@ -77,8 +77,13 @@ class Application:
                 response=self.get_html(request["info"])
             else:
                 response=self.get_data(request["info"],None)
-        response = json.dumps(response)
-        conn.send(response.encode())
+        try:
+            response = json.dumps(response)
+            conn.send(response.encode())
+        except Exception as e:
+            response={"status":"404","data":open(STATIC_DIR+"/404.html").read()}
+            response = json.dumps(response)
+            conn.send(response.encode())
         conn.close()
     def get_html(self, info):
         print(info)
@@ -104,19 +109,22 @@ class Application:
                             if not i:
                                 continue
                             list_post.append(i)
-                        # if "submit" in list_post and "username" in list_post and "password" in list_post:
                         if "submit" in list_post:
                             if post["submit"]=="login":
-                                return {"status":"200","data":func(post["username"],post["password"])}
+                                if len(list_post)==3:
+                                    return {"status":"200","data":func(post["username"],post["password"])}
+                                else:
+                                    return {"status": "200", "data": func(None, None)}
                             elif post["submit"]=="regis":
                                 return {"status":"200","data":func()}
-                            elif post["submit"]=="regis_message":
-                                return {"status": "200", "data": func()}
+                            elif post["submit"]=="regis_submit":
+                                return {"status": "200", "data": func(post["name"],post["password"],
+                                                                      post["e_mail"])}
                             elif post["submit"]=="exit":
                                 return {"status":"200","data":func()}
                     except Exception as e:
-                        return {"status":"500","data":open(STATIC_DIR+"/500.html").read()}
-                if info!="/login" and info!="regis":
+                        return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
+                if info!="/login":
                     return {"status": "200", "data": func()}
         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
 if __name__ == '__main__':

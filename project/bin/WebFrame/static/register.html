@@ -112,6 +112,8 @@
             margin-top: -25px;
         }
     </style>
+    <link rel="shortcut icon" href="http://127.0.0.1:63342/save/project/bin/WebFrame/static/img/favicon.ico" type="image/x-icon" />
+
 </head>
 <body id="i88" style="margin: 0">
     <div class = "pg_header">
@@ -175,7 +177,7 @@
         </div>
         <div class="can">
             <!--<input id="i111" type="submit" name="commit" value="regis">-->
-            <button id="i111" type="submit" name="submit" value="regis_message"
+            <button id="i111" type="submit" name="submit" value="regis_submit"
             onclick="this.form.action = '/regis_submit';">
                 注册</button>
             <p style="width: 200px;display: inline-block;"></p>
@@ -202,7 +204,7 @@
                 var name1 = document.tijiao.text1.value;
                 if (name1 == "") {
                 div.innerHTML = "用户名不能为空！";
-                document.tijiao.text1.focus();
+                document.tijiao.text1.select();
                 return false;
             }
                 if (name1.length < 4 || name1.length > 16) {
@@ -229,12 +231,13 @@
                 var password = document.tijiao.text2.value;
                 if (password == "") {
                 div.innerHTML = "密码不能为空";
-                document.tijao.text2.focus();
+                document.tijiao.text2.focus();
                 return false;
             }
                 if (password.length < 4 || password.length > 16) {
                 div.innerHTML = "密码长度为4-16位";
-                document.tijiao.text2.select();
+                <!--document.tijiao.text2.select();-->
+                document.tijiao.text2.focus();
                 return false;
                 }
                 return true;
@@ -261,37 +264,37 @@
         function checkEmail(){
             var div = document.getElementById("div4");
             div.innerHTML = "";
-            var email = document.tijiao.text5.value;
+            var email = document.tijiao.text4.value;
             var sw = email.indexOf("@", 0);
             var sw1 = email.indexOf(".", 0);
             var tt = sw1 - sw;
             if (email.length == 0) {
             div.innerHTML = "邮箱不能为空";
-            document.tijiao.text5.focus();
+            document.tijiao.text4.focus();
             return false;
         }
 
             if (email.indexOf("@", 0) == -1) {
             div.innerHTML = "必须包含@符号";
-            document.tijiao.text5.select();
+            document.tijiao.text4.select();
             return false;
         }
 
             if (email.indexOf(".", 0) == -1) {
             div.innerHTML = "必须包含.符号";
-            document.tijiao.text5.select();
+            document.tijiao.text4.select();
             return false;
         }
 
             if (tt == 1) {
             div.innerHTML = "@和.不能一起";
-            document.tijiao.text5.select();
+            document.tijiao.text4.select();
             return false;
         }
 
             if (sw > sw1) {
             div.innerHTML  = "@符号必须在.之前";
-            document.tijiao.text5.select();
+            document.tijiao.text4.select();
             return false;
         }
             else {
@@ -309,7 +312,8 @@
             <!--alert(exit);-->
             <!--alert(submit);-->
             <!--alert(localhostPaht+"/regis_submit");-->
-            if(submit==localhostPaht+"/regis_submit"){
+            if(submit!=localhostPaht+"/exit"){
+
                 if (checkname() && checkpassword() && checkrepassword() && checkEmail()) {
                 return true;
                 }
