@@ -27,24 +27,41 @@ class sql:
             self.cur.close()
         self.db.close()
 
-    def login(self, name, pwd):
+    def login(self,list):
         # 和数据库信息进行比对
         sql = "select username,password from user where username=%s and password=%s;"
-        self.cur.execute(sql, [name, pwd])
+        self.cur.execute(sql, [list[0], list[1]])
         r = self.cur.fetchone()
         if r:
             return True
         else:
             return False
-    def regis(self,name,pwd):
+    # def regis(self,name,pwd,sex,portrait,idiograph,*args):
+    def regis(self,list):
         sql="select * from user where username=%s"
-        self.cur.execute(sql,name)
+        # self.cur.execute(sql,name)
+        self.cur.execute(sql,list[0])
         r=self.cur.fetchone()
+        print(list)
         if r:
             return False
         else:
-            sql="insert into user(username,password) values(%s,%s)"
-            r=self.cur.execute(sql,[name,pwd])
+            if not list[3] and list[4]:
+                print("d")
+                sql="insert into user(username,password,sex,idiograph) values(%s,%s,%s,%s)"
+                r = self.cur.execute(sql, [list[0], list[1], list[2], list[4]])
+            elif not list[4] and list[3]:
+                print("a")
+                sql="insert into user(username,password,sex,portrait) values(%s,%s,%s,%s)"
+                r = self.cur.execute(sql, [list[0], list[1], list[2], list[3]])
+            elif not list[3] and not list[4]:
+                print("c")
+                sql="insert into user(username,password,sex) values(%s,%s,%s)"
+                r = self.cur.execute(sql, [list[0], list[1], list[2]])
+            else:
+                print("b")
+                sql="insert into user(username,password,sex,portrait,idiograph) values(%s,%s,%s,%s,%s)"
+                r=self.cur.execute(sql,[list[0],list[1],list[2],list[3],list[4]])
             if r>0:
                 self.db.commit()
                 return True

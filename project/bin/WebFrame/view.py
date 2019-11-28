@@ -10,8 +10,8 @@ def bye(*args):
 def index(*args):
     with open(STATIC_DIR + "/login.html") as f:
         return f.read()
-def login(name,pwd):
-    if sql.login(name,pwd):
+def login(list):
+    if sql.login(list):
         with open(STATIC_DIR+"/mobile-index.html") as f:
             return f.read()
     else:
@@ -20,10 +20,11 @@ def login(name,pwd):
 def register(*args):
     with open(STATIC_DIR + "/register.html") as f:
             return f.read()
-def register_submit(name,pwd):
+# def register_submit(name,pwd,sex,portrait,idiograph,*args):
+def register_submit(list):
     fs=open(STATIC_DIR + "/regis-success.html").read()
     ff=open(STATIC_DIR + "/regis-fail.html").read()
-    if sql.regis(name,pwd):
+    if sql.regis(list):
         return fs
     else:
         return ff

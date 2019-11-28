@@ -13,6 +13,7 @@ import sys
 import os
 import base64
 import re
+import urllib
 from urllib import request
 import requests
 
@@ -39,13 +40,14 @@ class Application:
 
     def handle(self,conn):
         #接受请求
-        request=conn.recv(1024).decode()
+        request=conn.recv(1024).decode("utf-8")
+        # request=urllib.request.unquote(conn.recv(1024).decode("utf-8"))
         if not request:
             return
         request=json.loads(request)
         if request["method"]=="GET":
             print(request)
-            # print(request["info"])
+            # request_change="http://176.215.133.52:8080" + request["info"]
             if request["info"]=="/" or request["info"][-5:]==".html":
                 response=self.get_html(request["info"])
             else:
@@ -54,7 +56,6 @@ class Application:
                 except:
                     info=False
                 if info:
-                    # print(request["info"])
                     post = re.search(r"\?.+", request["info"]).group().lstrip("?").split("&")
                     post_dict={}
                     for i,item  in enumerate(post):
@@ -63,7 +64,9 @@ class Application:
                             value=re.search(r"=.+",item).group().lstrip("=")
                             post_dict[key]=value
                         except:
+                            post_dict[key]=key+("=")+""
                             continue
+                    # a=post_dict["file"].split("=")[1]
                     if not post_dict and info=="/login":
                         info="/"
                     response = self.get_data(info, post_dict)
@@ -71,7 +74,7 @@ class Application:
                     response = self.get_data(request["info"],None)
 
         elif request["method"]=="POST":
-            # print(request)
+            print(request)
             if request["info"]=="/" or request["info"][-5:]==".html":
                 response=self.get_html(request["info"])
             else:
@@ -85,7 +88,7 @@ class Application:
             conn.send(response.encode())
         conn.close()
     def get_html(self, info):
-        print(info)
+        # print(info)
         if info=="/":
             filename=STATIC_DIR+"/login.html"
         else:
@@ -97,30 +100,44 @@ class Application:
         else:
             return {"status":"200","data":fd.read()}
     def get_data(self,info,post):
-        # print(info)
         print(post)
+        if post:
+            for k,v in post.items():
+                    post[k]=urllib.request.unquote(v)
         for url,func in urls:
             if info==url:
                 if post:
                     try:
-                        list_post=[]
-                        for i in post:
-                            if not i:
+                        list_post_key=[]
+                        list_post_value=[]
+                        for k,v in post.items():
+                            if not v:
+                                list_post_key.append("#")
                                 continue
-                            list_post.append(i)
-                        if "submit" in list_post:
+                            list_post_key.append(k)
+                            if k!="submit":
+                                try:
+                                    list_post_value.append(v.split("=")[1])
+                                except:
+                                    list_post_value.append(v.split("=")[0])
+                        # print(list_post_key)
+                        # print(list_post_value)
+                        if "submit" in list_post_key:
                             if post["submit"]=="login":
-                                if len(list_post)==3:
-                                    return {"status":"200","data":func(post["username"],post["password"])}
+                                if len(list_post_key)==3:
+                                    # return {"status":"200","data":func(post["username"],post["password"])}
+                                    return {"status":"200","data":func(list_post_value)}
                                 else:
                                     return {"status": "200", "data": func(None, None)}
                             elif post["submit"]=="regis":
                                 return {"status":"200","data":func()}
                             elif post["submit"]=="regis_submit":
-                                return {"status": "200", "data": func(post["name"],post["password"])}
+                                # return {"status": "200", "data": func(post["name"],post["password"])}
+                                return {"status": "200", "data": func(list_post_value)}
                             elif post["submit"]=="exit":
                                 return {"status":"200","data":func()}
                     except Exception as e:
+                        print(e)
                         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
                 if info!="/login":
                     return {"status": "200", "data": func()}

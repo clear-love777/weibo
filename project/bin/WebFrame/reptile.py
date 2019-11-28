@@ -7,7 +7,7 @@ def movieSpider():
     """
 
 
-    url = "https://www.17sucai.com/pins/demo-show?id=35450"
+    url = "http://176.215.133.52:8080"
     # url = "http://www.baidu.com/img/bd_logo1.png"
 
 

@@ -12,5 +12,3 @@ if __name__ == '__main__':
     pw=Process(target=web.start)
     ph.start()
     pw.start()
-
-
