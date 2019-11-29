@@ -92,10 +92,9 @@
         }
         .can{
             width: 1220px;
-            height: 40px;
+            height: 50px;
             line-height: 40px;
             margin: 0 auto;
-            text-align: center;
             display: inline-block;
         }
         .tian{
@@ -104,4 +103,21 @@
             font-size: 12px;
             margin-right: -120px;
             margin-top: -25px;
+        }
+        .code
+        {
+            width: 80px;
+            <!--background-image:url(code.jpg);-->
+            font-family:Arial;
+            font-style:italic;
+            color:blue;
+            border:1;
+            padding:2px 3px;
+            letter-spacing:3px;
+            font-weight:bolder;
+            cursor:pointer;
+        }
+        .unchanged
+        {
+            border:0;
         }

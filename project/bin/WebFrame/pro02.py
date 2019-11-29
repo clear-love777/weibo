@@ -17,10 +17,14 @@ def convert(image):
 
 if __name__ == "__main__":
     # convert("./static/img/author-main1.jpg")
-    f=open("./static/img/author-main1.jpg","rb")
+    f=open("./static/img/404.png","rb")
     # print(f.read())
-    a=base64.b64decode(base64.b64encode(f.read()))
-    print(a)
+    data=f.read()
+    print(type(data))
+    a=base64.b64encode(data)
+    print(type(a))
+    b=base64.b64decode(a)
+    print(type(b))
     # a=b"\""+convert("./static/img/author-main1.jpg")+b"\"}"
     # b="{\"status\":\"200\",\"data\":".encode()+b"\""+base64.b64decode(response["data"])+b"\"}"
     # c=b+a

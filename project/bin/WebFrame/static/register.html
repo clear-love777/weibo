@@ -3,92 +3,110 @@
 <head>
     <meta charset="utf-8">
     <title>注册页面</title>
-    <script src="http://127.0.0.1:63342/save/project/bin/WebFrame/static/js/regis.js"></script>
-    <script src="http://127.0.0.1:63342/save/project/bin/WebFrame/static/js/verify.js"></script>
-    <link rel="stylesheet" href="http://127.0.0.1:63342/save/project/bin/WebFrame/static/css/regis.css">
-    <link rel="shortcut icon" href="http://127.0.0.1:63342/save/project/bin/WebFrame/static/img/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="http://127.0.0.1:63342/save/project/bin/WebFrame/static/css/verify.css">
+    <script src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/regis.js"></script>
+    <!--<script src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/verify.js"></script>-->
+    <link rel="stylesheet" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/regis.css">
+    <link rel="shortcut icon" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/img/favicon.ico"
+          type="image/x-icon"/>
+    <!--<link rel="stylesheet" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/verify.css">-->
+
 </head>
-<body id="i88" style="margin: 0">
-    <div class = "pg_header">
-        <a class = "logo">LOGO</a>
-        <a class="pg_dl" id="i77">注册</a>
-    </div>
-    <form id="myform" name="tijiao" method="get" onsubmit="return check()" action="">
-        <div class="left"></div>
-        <div class="pg_body">
-                <div class="menu">用户名:</div>
-                    <div class="kong">
-                        <input id="text1" type="text" name="name" placeholder="请输入用户名" onblur="check()"><span id="div1"
-                                                                                                            class="tian" style="margin-top: 4px">*(为必填)</span>
-                    </div>
-
-                <!--<div class="menu">昵称:</div>-->
-                    <!--<div class="kong">-->
-                        <!--<input id="i2" type="text" name="nickname">-->
-                    <!--</div>-->
-
-                <div class="menu">密码:</div>
-                    <div class="kong">
-                        <input id="text2" type="password" name="password" onblur="check()">
-                        <span id="div2" class="tian" style="margin-top: -25px">*(为必填)</span>
-                    </div>
-                <div class="menu">确认密码:</div>
-                    <div class="kong">
-                        <input id="text3" type="password"  onblur="check()">
-                        <span id="div3" class="tian">*(为必填)</span>
-                    </div>
-                <div class="menu">性别:</div>
-                    <div class="kong" style="width:200px;">
-                         男<input type="radio" name="gender" value="1" checked>
-                         女 <input type="radio" name="gender" value="2">
-                    </div>
-                <!--<div class="menu">电话号码:</div>-->
-                    <!--<div class="kong">-->
-                        <!--<input id="i5" type="text" name="tel">-->
-                    <!--</div>-->
-                <!--<div class="menu">邮箱地址:</div>-->
-                    <!--<div class="kong">-->
-                        <!--<input id="text4" type="text" name="e_mail" onblur="check()">-->
-                        <!--<span id="div4" class="tian">*(为必填)</span>-->
-                    <!--</div>-->
-                <div class="menu">头像上传:    </div>
-                    <div class="kong">
-                        <input type="file" name="portrait" value="选择头像" accept="image/*">
-                </div>
-                <!--<div class="menu">爱好:</div>-->
-                    <!--<div class="kong" style="width: 300px;">-->
-                        <!--听歌 <input type="checkbox" name="favor">-->
-                        <!--写代码 <input type="checkbox" name="favor">-->
-                        <!--篮球 <input type="checkbox" name="favor">-->
-                        <!--足球 <input type="checkbox" name="favor">-->
-                    <!--</div>-->
-                <div class="menu">个人签名:</div>
-                <div class="kong">
-                    <textarea name="idiograph" style="width: 280px;height: 40px;"></textarea>
-                </div>
-                <div class="menu">验证码:</div>
-            <div class="kong">
-                <p>
-            <input  type="text"   id="validCode" style="width:50px;height:25px;"/>
-            <input type="text" onClick="createCode()" readonly="readonly" id="checkCode" class="unchanged"
-                style="width:75px;height:25px;float:left;"/>
-            <span id="div7" class="tian" style="margin-top: 4px;color:red;">*(为必填) </span>
-                </p>
+<body id="i88" style="margin: 0" onLoad="createCode()">
+<div class="pg_header">
+    <a class="logo">LOGO</a>
+    <a class="pg_dl" id="i77">注册</a>
+</div>
+<form id="myform" name="tijiao" method="get" onsubmit="return check()" action="#">
+    <div class="left"></div>
+    <div class="pg_body">
+        <div class="menu">用户名:</div>
+        <div class="kong">
+            <input id="text1" type="text" name="name" placeholder="请输入用户名" onblur="check()"><span id="div1"
+                                                                                                  class="tian"
+                                                                                                  style="margin-top: 4px">*(为必填)</span>
         </div>
+
+        <!--<div class="menu">昵称:</div>-->
+        <!--<div class="kong">-->
+        <!--<input id="i2" type="text" name="nickname">-->
+        <!--</div>-->
+
+        <div class="menu">密码:</div>
+        <div class="kong">
+            <input id="text2" type="password" name="password" onblur="check()">
+            <span id="div2" class="tian" style="margin-top: -25px">*(为必填)</span>
+        </div>
+        <div class="menu">确认密码:</div>
+        <div class="kong">
+            <input id="text3" type="password" onblur="check()">
+            <span id="div3" class="tian">*(为必填)</span>
+        </div>
+        <div class="menu">性别:</div>
+        <div class="kong" style="width:200px;">
+            男<input type="radio" name="gender" value="1" checked>
+            女 <input type="radio" name="gender" value="2">
+        </div>
+        <!--<div class="menu">电话号码:</div>-->
+        <!--<div class="kong">-->
+        <!--<input id="i5" type="text" name="tel">-->
+        <!--</div>-->
+        <!--<div class="menu">邮箱地址:</div>-->
+        <!--<div class="kong">-->
+        <!--<input id="text4" type="text" name="e_mail" onblur="check()">-->
+        <!--<span id="div4" class="tian">*(为必填)</span>-->
+        <!--</div>-->
+        <div class="menu">头像上传:</div>
+        <div class="kong">
+            <input type="file" name="portrait" value="选择头像" accept="image/*">
+        </div>
+        <!--<div class="menu">爱好:</div>-->
+        <!--<div class="kong" style="width: 300px;">-->
+        <!--听歌 <input type="checkbox" name="favor">-->
+        <!--写代码 <input type="checkbox" name="favor">-->
+        <!--篮球 <input type="checkbox" name="favor">-->
+        <!--足球 <input type="checkbox" name="favor">-->
+        <!--</div>-->
+        <div class="menu">个人签名:</div>
+        <div class="kong">
+            <textarea name="idiograph" style="width: 280px;height: 40px;"></textarea>
+        </div>
+
+
+
+
+
+        <div class="menu" style="width:100px">验证码:</div>
+        <div class="kong" style="
+            width:170px;
+            margin-top: -44px;
+            margin-left: 210px;
+            float:left;
+            padding: 0px;">
+            <input type="text" id="validCode" onblur="check()" style="width:75px;float:left;"/>
+            <input type="text" onClick="createCode()" readonly="readonly" id="checkCode" class="unchanged"
+                   style="width:75px;float:left;"/><br><span id="div7" class="tian">*(为必填)</span>
+
+        </div>
+
+
+
+
+
         <div class="can">
             <!--<input id="i111" type="submit" name="commit" value="regis">-->
             <button id="i111" type="submit" name="submit" value="regis_submit" onclick="onclick_submit();">
-            <!--onclick="this.form.action = '/regis_submit';">-->
-                注册</button>
+                <!--onclick="this.form.action = '/regis_submit';">-->
+                注册
+            </button>
             <p style="width: 200px;display: inline-block;"></p>
             <!--<input id="i222" type="button" name="exit" value="取  消">-->
             <button id="i112" type="submit" name="submit" value="exit" onclick="onclick_exit();">
-            <!--onclick="this.form.action = '/exit';">-->
-                取消</button>
-
+                <!--onclick="this.form.action = '/exit';">-->
+                取消
+            </button>
         </div>
-    </form>
+    </div>
+</form>
 
 </body>
 </html>

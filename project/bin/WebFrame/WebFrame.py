@@ -16,7 +16,7 @@ import re
 import urllib
 from urllib import request
 import requests
-
+from time import sleep
 class Application:
 
 
@@ -83,6 +83,7 @@ class Application:
             response = json.dumps(response)
             conn.send(response.encode())
         except Exception as e:
+            print(e)
             response={"status":"404","data":open(STATIC_DIR+"/404.html").read()}
             response = json.dumps(response)
             conn.send(response.encode())
@@ -100,6 +101,7 @@ class Application:
         else:
             return {"status":"200","data":fd.read()}
     def get_data(self,info,post):
+        print(info)
         print(post)
         if post:
             for k,v in post.items():
