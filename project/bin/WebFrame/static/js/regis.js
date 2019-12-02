@@ -61,7 +61,7 @@
                 return false;
             }
                 var charname1 = name1.toLowerCase();
-                console.log(charname1);
+//                console.log(charname1);
                 for (var i = 0; i < name1.length; i++) {
                 var charname = charname1.charAt(i);
                 if (!(charname >= 0 && charname <= 9) && (!(charname >= 'a' && charname <= 'z' || isChinese(charname))) &&
@@ -119,47 +119,47 @@ function isChinese(temp){
                 return true;
         }
         //邮箱验证
-        <!--function checkEmail(){-->
-            <!--var div = document.getElementById("div4");-->
-            <!--div.innerHTML = "";-->
-            <!--var email = document.tijiao.text4.value;-->
-            <!--var sw = email.indexOf("@", 0);-->
-            <!--var sw1 = email.indexOf(".", 0);-->
-            <!--var tt = sw1 - sw;-->
-            <!--if (email.length == 0) {-->
-            <!--div.innerHTML = "邮箱不能为空";-->
-            <!--document.tijiao.text4.focus();-->
-            <!--return false;-->
-        <!--}-->
+        function checkEmail(){
+            var div = document.getElementById("div4");
+            div.innerHTML = "";
+            var email = document.tijiao.text4.value;
+            var sw = email.indexOf("@", 0);
+            var sw1 = email.indexOf(".", 0);
+            var tt = sw1 - sw;
+            if (email.length == 0) {
+            div.innerHTML = "邮箱不能为空";
+            document.tijiao.text4.focus();
+            return false;
+        }
 
-            <!--if (email.indexOf("@", 0) == -1) {-->
-            <!--div.innerHTML = "必须包含@符号";-->
-            <!--document.tijiao.text4.select();-->
-            <!--return false;-->
-        <!--}-->
+            if (email.indexOf("@", 0) == -1) {
+            div.innerHTML = "必须包含@符号";
+            document.tijiao.text4.select();
+            return false;
+        }
 
-            <!--if (email.indexOf(".", 0) == -1) {-->
-            <!--div.innerHTML = "必须包含.符号";-->
-            <!--document.tijiao.text4.select();-->
-            <!--return false;-->
-        <!--}-->
+            if (email.indexOf(".", 0) == -1) {
+            div.innerHTML = "必须包含.符号";
+            document.tijiao.text4.select();
+            return false;
+        }
 
-            <!--if (tt == 1) {-->
-            <!--div.innerHTML = "@和.不能一起";-->
-            <!--document.tijiao.text4.select();-->
-            <!--return false;-->
-        <!--}-->
+            if (tt == 1) {
+            div.innerHTML = "@和.不能一起";
+            document.tijiao.text4.select();
+            return false;
+        }
 
-            <!--if (sw > sw1) {-->
-            <!--div.innerHTML  = "@符号必须在.之前";-->
-            <!--document.tijiao.text4.select();-->
-            <!--return false;-->
-        <!--}-->
-            <!--else {-->
-            <!--return true;-->
-            <!--}-->
-        <!--return ture;-->
-        <!--}-->
+            if (sw > sw1) {
+            div.innerHTML  = "@符号必须在.之前";
+            document.tijiao.text4.select();
+            return false;
+        }
+            else {
+            return true;
+            }
+        return ture;
+        }
 
             function check(){
             var regis_submit=document.getElementById("i111").value;
@@ -172,7 +172,7 @@ function isChinese(temp){
             <!--alert(localhostPaht+"/regis_submit");-->
             if(submit!=localhostPaht+"/exit"){
 
-                if (checkname() && checkpassword() && checkrepassword() && validate()) {
+                if (checkname() && checkpassword() && checkrepassword() && checkEmail() && validate()) {
                 return true;
                 }
                 else {

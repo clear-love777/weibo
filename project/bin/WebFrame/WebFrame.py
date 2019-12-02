@@ -102,10 +102,11 @@ class Application:
             return {"status":"200","data":fd.read()}
     def get_data(self,info,post):
         print(info)
-        print(post)
+        # print(post)
         if post:
             for k,v in post.items():
                     post[k]=urllib.request.unquote(v)
+        # print(post)
         for url,func in urls:
             if info==url:
                 if post:
@@ -122,8 +123,9 @@ class Application:
                                     list_post_value.append(v.split("=")[1])
                                 except:
                                     list_post_value.append(v.split("=")[0])
-                        # print(list_post_key)
-                        # print(list_post_value)
+                        print(list_post_key)
+                        print(list_post_value)
+                        # list_post_value[6]="/home/tarena/images/"+list_post_value[6]
                         if "submit" in list_post_key:
                             if post["submit"]=="login":
                                 if len(list_post_key)==3:

@@ -29,42 +29,41 @@ class sql:
 
     def login(self,list):
         # 和数据库信息进行比对
-        sql = "select username,password from user where username=%s and password=%s;"
+        sql = "select * from Users where user_name=%s and user_password=%s;"
         self.cur.execute(sql, [list[0], list[1]])
         r = self.cur.fetchone()
         if r:
             return True
         else:
             return False
-    # def regis(self,name,pwd,sex,portrait,idiograph,*args):
     def regis(self,list):
-        sql="select * from user where username=%s"
-        # self.cur.execute(sql,name)
+        sql="select * from Users where user_name=%s"
         self.cur.execute(sql,list[0])
         r=self.cur.fetchone()
-        print(list)
+        # print(list)
         if r:
             return False
         else:
-            if not list[3] and list[4]:
-                print("d")
-                sql="insert into user(username,password,sex,idiograph) values(%s,%s,%s,%s)"
-                r = self.cur.execute(sql, [list[0], list[1], list[2], list[4]])
-            elif not list[4] and list[3]:
-                print("a")
-                sql="insert into user(username,password,sex,portrait) values(%s,%s,%s,%s)"
-                r = self.cur.execute(sql, [list[0], list[1], list[2], list[3]])
-            elif not list[3] and not list[4]:
-                print("c")
-                sql="insert into user(username,password,sex) values(%s,%s,%s)"
-                r = self.cur.execute(sql, [list[0], list[1], list[2]])
-            else:
-                print("b")
-                sql="insert into user(username,password,sex,portrait,idiograph) values(%s,%s,%s,%s,%s)"
-                r=self.cur.execute(sql,[list[0],list[1],list[2],list[3],list[4]])
-            if r>0:
+            sql_Users="insert into Users(user_name,user_password,user_register_time) values(%s,%s,now());"
+            sql_Userinfo="insert into Userinfo(userinfo_uid,userinfo_sex,userinfo_email,userinfo_addr," \
+                         "userinfo_birthday,userinfo_img,userinfo_intro) " \
+                         "values(%s,%s,%s,%s,%s,%s,%s);"
+            r_user=self.cur.execute(sql_Users,[list[0], list[1]])
+            if r_user>0:
                 self.db.commit()
-                return True
+                sql_getid = "select user_id from Users order by user_id desc limit 1"
+                self.cur.execute(sql_getid)
+                user_id = self.cur.fetchone()[0]
+                list[6]="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/"+list[6]
+                r_userinfo = self.cur.execute(sql_Userinfo,
+                                              [user_id, list[2], list[3], list[4], list[5], list[6], list[7]])
+                if r_userinfo>0:
+
+                    self.db.commit()
+                    return True
+                else:
+                    self.db.rollback()
+                    return False
             else:
                 self.db.rollback()
                 return False

@@ -43,32 +43,41 @@
         </div>
         <div class="menu">性别:</div>
         <div class="kong" style="width:200px;">
-            男<input type="radio" name="gender" value="1" checked>
-            女 <input type="radio" name="gender" value="2">
+            男<input type="radio" name="gender" value="m" checked>
+            女 <input type="radio" name="gender" value="w">
         </div>
         <!--<div class="menu">电话号码:</div>-->
         <!--<div class="kong">-->
         <!--<input id="i5" type="text" name="tel">-->
         <!--</div>-->
-        <!--<div class="menu">邮箱地址:</div>-->
-        <!--<div class="kong">-->
-        <!--<input id="text4" type="text" name="e_mail" onblur="check()">-->
-        <!--<span id="div4" class="tian">*(为必填)</span>-->
-        <!--</div>-->
+        <div class="menu">邮箱:</div>
+        <div class="kong">
+        <input id="text4" type="text" name="e_mail" onblur="check()">
+        <span id="div4" class="tian">*(为必填)</span>
+        </div>
+        <div class="menu">家庭地址:</div>
+        <div class="kong">
+            <input id="text5" type="text" name="addr" >
+        </div>
+        <div class="menu">出生日期:</div>
+        <div class="kong">
+            <input id="text6" type="date" name="birthday" value="1990-01-01" >
+        </div>
+
         <div class="menu">头像上传:</div>
         <div class="kong">
-            <input type="file" name="portrait" value="选择头像" accept="image/*">
+            <!--<input type="file" onchange='var f = new File(this.getClass().getResource("/").getPath());console.log(f);'-->
+            <select name="portrait">
+            <option value="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/lakesi.jpeg" selected>拉克丝</option>
+            <option value="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/kasha.jpg">卡莎</option>
+            <option value="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/yifulin.jpeg">伊芙琳</option>
+            </select>
+            <img src="" style="width:50px;height:50px;">
         </div>
-        <!--<div class="menu">爱好:</div>-->
-        <!--<div class="kong" style="width: 300px;">-->
-        <!--听歌 <input type="checkbox" name="favor">-->
-        <!--写代码 <input type="checkbox" name="favor">-->
-        <!--篮球 <input type="checkbox" name="favor">-->
-        <!--足球 <input type="checkbox" name="favor">-->
-        <!--</div>-->
-        <div class="menu">个人签名:</div>
+
+        <div class="menu">介绍:</div>
         <div class="kong">
-            <textarea name="idiograph" style="width: 280px;height: 40px;"></textarea>
+            <textarea name="intro" style="width: 280px;height: 40px;"></textarea>
         </div>
 
 
@@ -88,10 +97,6 @@
 
         </div>
 
-
-
-
-
         <div class="can">
             <!--<input id="i111" type="submit" name="commit" value="regis">-->
             <button id="i111" type="submit" name="submit" value="regis_submit" onclick="onclick_submit();">
@@ -110,4 +115,12 @@
 
 </body>
 </html>
-
+<script>
+    var main=document.querySelector("select");
+    var img=document.querySelector("img");
+    <!--console.log(main.value);-->
+    img.setAttribute("src",main.value);
+    main.onchange=function(){
+        img.setAttribute("src",main.value);
+    }
+</script>

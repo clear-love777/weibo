@@ -20,7 +20,7 @@ Project_Path=os.getcwd().replace(os.path.dirname(os.path.dirname(os.path.dirname
 Request_path=HTTP_HOST+Project_Path
 
 #数据库配置
-sql_host="176.215.133.52"
+sql_host="176.215.133.27"
 sql_port=3306
 sql_user="root"
 sql_password="123456"

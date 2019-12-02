@@ -8,5 +8,94 @@
 
 </head>
 <body>
+<input type="text" id="t1" style="width:50px">+
+<input type="text" id="t2" style="width:50px">
+<button onclick="add();">add</button>
+<input type="text" id="t3" style="width:50px">
+<button onclick="accumulated();">accumulated</button><br>
+<input type="text" id="t4" style="width:50px">-
+<input type="text" id="t5" style="width:50px">
+<button onclick="runnian_num();">runnian_num</button><br>
+<input type="text" id="t6" style="width:50px">-
+<input type="text" id="t7" style="width:50px">
+<input type="text" id="t8" style="width:50px">
+<button onclick="max();">max</button><br>
 </body>
 </html>
+<script>
+    function myalert(){
+        alert("nmsl");
+    }
+    function getnum1(){
+        return parseInt(document.getElementById("t1").value)
+    }
+    function getnum2(){
+        return parseInt(document.getElementById("t2").value)
+    }
+    function getnum3(){
+        return parseInt(document.getElementById("t3").value)
+    }
+    function getyear1(){
+        return parseInt(document.getElementById("t4").value)
+    }
+    function getyear2(){
+        return parseInt(document.getElementById("t5").value)
+    }
+    function getnum4(){
+        return parseInt(document.getElementById("t6").value)
+    }
+    function getnum5(){
+        return parseInt(document.getElementById("t7").value)
+    }
+    function getnum6(){
+        return parseInt(document.getElementById("t8").value)
+    }
+    function add(){
+        return console.log(getnum1()+getnum2())
+    }
+    function accumulated(){
+        var num=getnum3()
+        result=0
+        for(var i=1;i<=num;i++){
+            result+=i
+        }
+        return console.log(result)
+    }
+    function runnian_num(){
+        var year1=getyear1()
+        var year2=getyear2()
+        run_num=0
+        for(var i=year1;i<=year2;i++){
+            if(i%4==0 && i%100!=0 || i%400==0){
+                run_num++
+            }
+        }
+        return console.log(run_num)
+    }
+    function max(){
+        var num1=getnum4();
+        var num2=getnum5();
+        var num3=getnum6();
+        var max=num1;
+        if (num2>max){
+            max=num2
+        }
+        if (num3>max){
+            max=num3
+        }
+        return console.log(max)
+
+    }
+    var arr01=[1,5,7,9,2,4]
+    function max_arr(arr){
+        return console.log(arr.sort(function(a,b){return b-a})[0])
+    }
+    function avg(arr){
+    sum=0;
+    for(i in arr){
+        sum+=parseInt(arr[i]);
+    }
+    return console.log(sum/arr.length)
+    }
+
+</script>

@@ -37,6 +37,7 @@ function days(dict){
 }
 //days(month_days())
 
+function mima(){
 do{
     var pwd=prompt("请输入密码:");
     if(pwd=="123"){
@@ -44,4 +45,34 @@ do{
         break
     }
 }while(true)
-//console.log(sum)
+}
+//mima()
+var a=1;
+function fm(){
+    var b=2;//局部的变量
+    console.log(a)
+}
+//fm()
+//var arr1=[];
+//var arr2=[10,20,30,40];
+//var arr3=new Array();
+//var arr4=new Array(10,20,30,40);
+//console.log(arr1);
+//console.log(arr2);
+//console.log(arr3);
+//console.log(arr4);
+//
+//var arr5=new Array(10);
+//console.log(arr5)
+//var arr=[1,2,3,4,5];
+//for(var i=arr.length-1;i>=0;i--){
+//    console.log(arr[i])
+//}
+//var arr=[1,2,3,4];
+//var s=arr.toString();
+//console.log(s);
+//var s2=arr.join("-");
+//console.log(s2)
+//function sortAsc(a,b){
+//    return a-b;
+//}
