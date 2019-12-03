@@ -3,99 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="js/test.js"></script>
     <link rel="shortcut icon" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/img/favicon.ico" type="image/x-icon" />
-
+    <style id="st1">
+        .red{
+            color:red;
+        }
+        .green{
+            color:green;
+        }
+        .bold{
+            font-weight:bold;
+        }
+        .redBack{
+            background-color:red;
+        }
+    </style>
 </head>
 <body>
-<input type="text" id="t1" style="width:50px">+
-<input type="text" id="t2" style="width:50px">
-<button onclick="add();">add</button>
-<input type="text" id="t3" style="width:50px">
-<button onclick="accumulated();">accumulated</button><br>
-<input type="text" id="t4" style="width:50px">-
-<input type="text" id="t5" style="width:50px">
-<button onclick="runnian_num();">runnian_num</button><br>
-<input type="text" id="t6" style="width:50px">-
-<input type="text" id="t7" style="width:50px">
-<input type="text" id="t8" style="width:50px">
-<button onclick="max();">max</button><br>
+<!--<div id="show"></div>-->
+<!--<input type="text" value="asdas" name="usertext">-->
+<!--<button name="bt1">click</button>-->
+<!--<h1 id="h01">用于测试的页面元素</h1>-->
+<!--<div class="red">这是测试</div>-->
+<!--<h1>这是h1</h1>-->
+<!--<div>这是div</div>-->
+<h3>用户名不能超过18个字符,同时不能小于6个字符</h3>
+用户名<input type="text" name="uname">
+<button id="bt1">验证</button>
+<div id="show"></div>
+
 </body>
 </html>
+<script src="js/test.js"></script>
 <script>
-    function myalert(){
-        alert("nmsl");
-    }
-    function getnum1(){
-        return parseInt(document.getElementById("t1").value)
-    }
-    function getnum2(){
-        return parseInt(document.getElementById("t2").value)
-    }
-    function getnum3(){
-        return parseInt(document.getElementById("t3").value)
-    }
-    function getyear1(){
-        return parseInt(document.getElementById("t4").value)
-    }
-    function getyear2(){
-        return parseInt(document.getElementById("t5").value)
-    }
-    function getnum4(){
-        return parseInt(document.getElementById("t6").value)
-    }
-    function getnum5(){
-        return parseInt(document.getElementById("t7").value)
-    }
-    function getnum6(){
-        return parseInt(document.getElementById("t8").value)
-    }
-    function add(){
-        return console.log(getnum1()+getnum2())
-    }
-    function accumulated(){
-        var num=getnum3()
-        result=0
-        for(var i=1;i<=num;i++){
-            result+=i
-        }
-        return console.log(result)
-    }
-    function runnian_num(){
-        var year1=getyear1()
-        var year2=getyear2()
-        run_num=0
-        for(var i=year1;i<=year2;i++){
-            if(i%4==0 && i%100!=0 || i%400==0){
-                run_num++
-            }
-        }
-        return console.log(run_num)
-    }
-    function max(){
-        var num1=getnum4();
-        var num2=getnum5();
-        var num3=getnum6();
-        var max=num1;
-        if (num2>max){
-            max=num2
-        }
-        if (num3>max){
-            max=num3
-        }
-        return console.log(max)
-
-    }
-    var arr01=[1,5,7,9,2,4]
-    function max_arr(arr){
-        return console.log(arr.sort(function(a,b){return b-a})[0])
-    }
-    function avg(arr){
-    sum=0;
-    for(i in arr){
-        sum+=parseInt(arr[i]);
-    }
-    return console.log(sum/arr.length)
-    }
-
+    <!--var h1=document.getElementById("h01");-->
+    <!--h1.onclick=function(){-->
+        <!--h1.setAttribute("class","red")-->
+    <!--}-->
+    <!--var div1=document.getElementsByTagName("div")[0]-->
+    <!--div1.setAttribute("class","red bold")-->
+    <!--var div=document.getElementsByTagName("div")[0];-->
+    <!--div.style.textAlign="center";-->
+    <!--div.setAttribute("class","redBack");-->
 </script>

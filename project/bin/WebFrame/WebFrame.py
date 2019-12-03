@@ -17,8 +17,9 @@ import urllib
 from urllib import request
 import requests
 from time import sleep
-class Application:
+from project.bin.WebFrame.pro03 import *
 
+class Application:
 
     def __init__(self):
         self.sock=socket()
@@ -45,6 +46,7 @@ class Application:
         if not request:
             return
         request=json.loads(request)
+
         if request["method"]=="GET":
             print(request)
             # request_change="http://176.215.133.52:8080" + request["info"]
@@ -52,10 +54,20 @@ class Application:
                 response=self.get_html(request["info"])
             else:
                 try:
+                    # print(request["info"])
                     info = re.search(r"/.+\?", request["info"]).group().rstrip("?")
-                except:
+                except AttributeError:
+                    info=re.search(r"/?",request["info"]).group()
+                    # print(info)
+                except Exception as e:
+                    print(e)
                     info=False
                 if info:
+                    # try:
+                    try:
+                        jsonp = re.search(r"/\?callback=.+", request["info"]).group().lstrip("/?callback=")
+                    except:
+                        pass
                     post = re.search(r"\?.+", request["info"]).group().lstrip("?").split("&")
                     post_dict={}
                     for i,item  in enumerate(post):
@@ -69,7 +81,13 @@ class Application:
                     # a=post_dict["file"].split("=")[1]
                     if not post_dict and info=="/login":
                         info="/"
-                    response = self.get_data(info, post_dict)
+                    # print(request["info"])
+                    try:
+                        re.search(r"/\?callback=.+",request["info"]).group()
+                        request["info"]=jsonp
+                        response=self.get_ajax(info,jsonp)
+                    except AttributeError:
+                        response = self.get_data(info, post_dict)
                 else:
                     response = self.get_data(request["info"],None)
 
@@ -81,6 +99,8 @@ class Application:
                 response=self.get_data(request["info"],None)
         try:
             response = json.dumps(response)
+            # response = "callback" + "("+response+")"
+            print("response>>", response)
             conn.send(response.encode())
         except Exception as e:
             print(e)
@@ -101,7 +121,7 @@ class Application:
         else:
             return {"status":"200","data":fd.read()}
     def get_data(self,info,post):
-        print(info)
+        # print(info)
         # print(post)
         if post:
             for k,v in post.items():
@@ -123,8 +143,8 @@ class Application:
                                     list_post_value.append(v.split("=")[1])
                                 except:
                                     list_post_value.append(v.split("=")[0])
-                        print(list_post_key)
-                        print(list_post_value)
+                        # print(list_post_key)
+                        # print(list_post_value)
                         # list_post_value[6]="/home/tarena/images/"+list_post_value[6]
                         if "submit" in list_post_key:
                             if post["submit"]=="login":
@@ -145,7 +165,36 @@ class Application:
                         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
                 if info!="/login":
                     return {"status": "200", "data": func()}
+                else:
+                    return {"status": "200", "data": func((None,None))}
         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
+
+    def get_ajax(self, info, jsonp):
+        # print(info)
+        for url,func in urls:
+            # print(url,info)
+            if info==url:
+                return {"status":"200","data":func()}
+
+    def getcontent(self):
+        conn = pymysql.connect(host=sql_host,
+                               port=sql_port,
+                               user=sql_user,
+                               password=sql_password,
+                               database=sql_database,
+                               charset=sql_charset)
+        cur = conn.cursor()
+        sql = "select * from Users;"
+        cur.execute(sql)
+        data = cur.fetchall()
+        # print(data)
+        para = []
+        for i in data:
+            # print(i)
+            text = {"id": i[0], "username": i[1], "password": i[2]}
+            para.append(text)
+        return json.dumps(para, ensure_ascii=False, indent=4)
+
 if __name__ == '__main__':
     app=Application()
     app.start()#启动服务

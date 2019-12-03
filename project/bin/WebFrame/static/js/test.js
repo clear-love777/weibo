@@ -76,3 +76,70 @@ function fm(){
 //function sortAsc(a,b){
 //    return a-b;
 //}
+//var res=window.confirm("是否确定")
+//console.log(res)
+//var timer=setInterval(function(){alert("haha")},1000);
+var timer=null;
+function startinterval(){
+    var timer=setInterval(function(){
+    console.log("nmsl")},3000)
+}
+function stoptinterval(){
+    clearInterval(timer);
+}
+//var timer01=setTimeout(function(){
+//alert("nmsl")
+//},3000)
+//var h1=document.getElementsByTagName("h1")[0];
+//console.log(h1);
+
+//var elems=document.getElementsByClassName("category");
+//console.log(elems)
+//var hobbys=document.getElementsByName("hobby");
+//var bt1=document.getElementsByName("bt1")[0];
+//var div1=document.getElementById("show");
+//var t1=document.getElementsByName("usertext")[0];
+//console.log(bt1);
+//console.log(t1);
+//console.log(div1);
+//bt1.onclick=function(){
+////    div1.innerText=t1.value;
+//    div1.innerHTML="<b>"+t1.value+"<b>";
+//}
+var bt1=document.getElementById("bt1")
+var t1=document.getElementsByName("uname")[0]
+var div1=document.getElementById("show")
+console.log(bt1);
+console.log(t1);
+console.log(div1);
+bt1.onclick=function(){
+    if (t1.value.length>18 || t1.value.length<6){
+        div1.innerHTML="非法";
+        div1.setAttribute("class","green");
+    }else{
+        div1.innerHTML="用户名合法";
+        div1.setAttribute("class","red");
+    }
+}
+var div=document.createElement("div");
+div.id="content";
+div.innerText="动态创建的div";
+document.body.appendChild(div);
+
+var h1=document.createElement("h1");
+h1.innerText="text";
+document.body.insertBefore(h1,div);
+
+//document.body.removeChild(h1);
+h1.parentNode.removeChild(h1);
+var table=document.createElement("table");
+var tr=document.createElement("tr");
+var th=document.createElement("th");
+table.setAttribute("style","border:1px solid;")
+document.body.appendChild(table)
+table.appendChild(tr)
+tr.appendChild(th)
+
+var json=[
+{"ename":"a","salary":15000}
+]

@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
-
+<div id="name"></div>
 </body>
 </html>
-<script>
-    var xmlhttp=new XMLHttpRequest();
-    xmlhttp.onreadystatechange=function(){
-        if(xmlhttp.readyState==4 && xmlhttp.status==200){
-            console.log(xmlhttp.responseText);
-        }
-    }
-    <!--xmlhttp.open("POST","http://176.215.133.52:9999/save/project/bin/WebFrame/static/test.xml",true);-->
-    xmlhttp.open("GET","http://176.215.133.52:8080",true);
-    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xmlhttp.send();
+<script type="text/javascript"
+        src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/jQuery/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+    $.ajax({
+            <!--type: "get",-->
+            <!--dataType: "jsonp",-->
+            <!--jsonp: "callback",-->
+            <!--header:('Allow-Control-Allow-Origin：*'),-->
+            <!--jsonpCallback:"success_jsonpCallback",-->
+            type:'GET',
+            dataType:'jsonp',
+            jsonp:'callback',
+            url: "http://176.215.133.52:8080",
+            <!--url: "http://176.215.133.52:9999/save/project/bin/WebFrame/static/404.html",-->
+            success: function(data){
+            console.log(data)
+            console.log("sadsadasd")
+            }
+        })
 </script>
