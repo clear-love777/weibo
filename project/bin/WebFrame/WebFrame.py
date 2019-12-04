@@ -57,8 +57,9 @@ class Application:
                     # print(request["info"])
                     info = re.search(r"/.+\?", request["info"]).group().rstrip("?")
                 except AttributeError:
-                    info=re.search(r"/?",request["info"]).group()
-                    # print(info)
+                    # print(request["info"])
+                    info=request["info"]
+                    # info=re.search(r"/?",request["info"]).group()
                 except Exception as e:
                     print(e)
                     info=False
@@ -68,25 +69,43 @@ class Application:
                         jsonp = re.search(r"/\?callback=.+", request["info"]).group().lstrip("/?callback=")
                     except:
                         pass
-                    post = re.search(r"\?.+", request["info"]).group().lstrip("?").split("&")
+                    try:
+                        if not re.search(r"/\?callback",info):
+
+                            post = re.search(r"\?.+", request["info"]).group().lstrip("?").split("&")
+                        else:
+
+                            post=re.search(r"/\?",info).group().rstrip("?")
+                    except Exception as e:
+                        # print("jjjjjj",e)
+                        post={}
                     post_dict={}
                     for i,item  in enumerate(post):
-                        try:
-                            key=re.search(r".+=",item).group().rstrip("=")
-                            value=re.search(r"=.+",item).group().lstrip("=")
-                            post_dict[key]=value
-                        except:
-                            post_dict[key]=key+("=")+""
-                            continue
+                        if item:
+                            try:
+                                key=re.search(r".+=",item).group().rstrip("=")
+                                value=re.search(r"=.+",item).group().lstrip("=")
+                                post_dict[key]=value
+                            except:
+                                try:
+                                    post_dict[key]=key+("=")+""
+                                    continue
+                                except:
+                                    break
+                        else:
+                            break
+                    # print(post_dict)
+                    # print(info)
+                    # print(jsonp)
                     # a=post_dict["file"].split("=")[1]
                     if not post_dict and info=="/login":
                         info="/"
-                    # print(request["info"])
+                        # print(request["info"])
                     try:
                         re.search(r"/\?callback=.+",request["info"]).group()
                         request["info"]=jsonp
-                        response=self.get_ajax(info,jsonp)
-                    except AttributeError:
+                        response=self.get_ajax(post,jsonp)
+                    except AttributeError as e:
                         response = self.get_data(info, post_dict)
                 else:
                     response = self.get_data(request["info"],None)
@@ -103,13 +122,13 @@ class Application:
             print("response>>", response)
             conn.send(response.encode())
         except Exception as e:
-            print(e)
+            # print("xxxxxx",e)
             response={"status":"404","data":open(STATIC_DIR+"/404.html").read()}
             response = json.dumps(response)
             conn.send(response.encode())
         conn.close()
     def get_html(self, info):
-        # print(info)
+        print(info)
         if info=="/":
             filename=STATIC_DIR+"/login.html"
         else:
@@ -121,8 +140,8 @@ class Application:
         else:
             return {"status":"200","data":fd.read()}
     def get_data(self,info,post):
-        # print(info)
-        # print(post)
+        print("get_data_info:",info)
+        print("get_data_post:",post)
         if post:
             for k,v in post.items():
                     post[k]=urllib.request.unquote(v)
@@ -145,7 +164,6 @@ class Application:
                                     list_post_value.append(v.split("=")[0])
                         # print(list_post_key)
                         # print(list_post_value)
-                        # list_post_value[6]="/home/tarena/images/"+list_post_value[6]
                         if "submit" in list_post_key:
                             if post["submit"]=="login":
                                 if len(list_post_key)==3:
@@ -156,25 +174,27 @@ class Application:
                             elif post["submit"]=="regis":
                                 return {"status":"200","data":func()}
                             elif post["submit"]=="regis_submit":
+                                print("ss")
                                 # return {"status": "200", "data": func(post["name"],post["password"])}
                                 return {"status": "200", "data": func(list_post_value)}
                             elif post["submit"]=="exit":
                                 return {"status":"200","data":func()}
                     except Exception as e:
-                        print(e)
                         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
-                if info!="/login":
-                    return {"status": "200", "data": func()}
                 else:
-                    return {"status": "200", "data": func((None,None))}
+                    if info!="/login":
+                        return {"status": "200", "data": func()}
+                    else:
+                        return {"status": "200", "data": func((None,None))}
         return {"status":"404","data":open(STATIC_DIR+"/404.html").read()}
 
     def get_ajax(self, info, jsonp):
-        # print(info)
+        print("get_ajax_info:",info)
+        print("get_ajax_jsonp:",jsonp)
         for url,func in urls:
             # print(url,info)
             if info==url:
-                return {"status":"200","data":func()}
+                return {"status":"200","data":"userHandler"+"("+self.getcontent()+")"}
 
     def getcontent(self):
         conn = pymysql.connect(host=sql_host,

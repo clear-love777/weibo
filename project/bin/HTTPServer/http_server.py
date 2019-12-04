@@ -124,6 +124,7 @@ class HTTPServer:
             responseBody = data["data"]
         response_data=responseHeaders+responseBody
         conn.send(response_data.encode())
+        conn.close()
 if __name__ == '__main__':
     httpd=HTTPServer()
     httpd.serve_forever()#启动服务

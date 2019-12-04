@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p id="p1" class="c1">床前明月光</p>
+<p class="c2">疑是地上霜</p>
+<p class="c1">举头望明月</p>
+<p id="p2" class="c2s">低头思故乡</p>
+</body>
+</html>
+<script src="js/jQuery/jquery-3.4.1.js"></script>
+<script>
+    $("[id]").css("font-size","32px");
+    $("[id=p1]").css("color","red");
+    $("[id!=p1]").css("color","blue");
+    $("[class^=c]").css("background-color","yellow");
+    $("[class$=s]").css("background-color","orange");
+    $("[class*=1]").css("border","5px solid blue");
+    $("[class*=2]").css("border","5px solid pink");
+</script>

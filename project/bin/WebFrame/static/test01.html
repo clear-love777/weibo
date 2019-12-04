@@ -12,20 +12,17 @@
 <script type="text/javascript"
         src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/jQuery/jquery-3.4.1.js"></script>
 <script type="text/javascript">
+    var a=document.cookie;
+    console.log(a)
     $.ajax({
-            <!--type: "get",-->
-            <!--dataType: "jsonp",-->
-            <!--jsonp: "callback",-->
-            <!--header:('Allow-Control-Allow-Origin：*'),-->
-            <!--jsonpCallback:"success_jsonpCallback",-->
             type:'GET',
             dataType:'jsonp',
             jsonp:'callback',
+            jsonpCallback:"userHandler",
             url: "http://176.215.133.52:8080",
-            <!--url: "http://176.215.133.52:9999/save/project/bin/WebFrame/static/404.html",-->
             success: function(data){
+            console.log(this)
             console.log(data)
-            console.log("sadsadasd")
             }
         })
 </script>

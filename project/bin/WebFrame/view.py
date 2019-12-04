@@ -12,7 +12,7 @@ def index(*args):
         return f.read()
 def login(list):
     if sql.login(list):
-        with open(STATIC_DIR+"/mobile-index.html") as f:
+        with open(STATIC_DIR+"/index.html") as f:
             return f.read()
     else:
         with open(STATIC_DIR+"/login.html") as f:

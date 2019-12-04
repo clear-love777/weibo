@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="uname" value="first">
+<button>显示</button>
+<div id="show"></div>
+</body>
+</html>
+<script src="js/jQuery/jquery-3.4.1.js"></script>
+<script>
+    var btn=$("button")
+    var t1=$("#uname")
+    var div1=$("#show")
+    btn.click(function(){
+        div1.html(t1.val()).css("color","red")
+    })
+</script>

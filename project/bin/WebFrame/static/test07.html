@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active{
+            background-color:red;
+
+        }
+    </style>
+</head>
+<body>
+<div id="check_all">
+    <input type="checkbox">全选
+</div>
+<ul>
+    <li><input type="checkbox" checked="checked">1</li>
+    <li><input type="checkbox">2</li>
+    <li><input type="checkbox">3</li>
+</ul>
+</body>
+</html>
+<script src="js/jQuery/jquery-3.4.1.js"></script>
+<script>
+    var input=$("input")
+    for(var x=0;x<input.length;x++){
+        $(input[x]).change(function(){
+            for(var i=0;i<input.length;i++){
+                if($(input[i]).prop("checked")){
+                    $(input[i]).parent().attr("class","active")
+                }else{
+                    $(input[i]).parent().attr("class","")
+                }
+            }
+      })
+    }
+
+    <!--})-->
+
+
+</script>
