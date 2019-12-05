@@ -4,7 +4,7 @@ document.querySelector('.person[data-chat=person2]').classList.add('active');
 var friends = {
   list: document.querySelector('ul.people'),
   all: document.querySelectorAll('.left .person'),
-  name: '' },
+  name: '' }
 
 chat = {
   container: document.querySelector('.container .right'),

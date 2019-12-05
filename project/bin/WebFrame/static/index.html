@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/reset.min.css">
-
+<script src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/jQuery/jquery-3.4.1.js"></script>
 
 <link rel="stylesheet" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/style.css">
 <link rel="shortcut icon" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/img/favicon.ico"
@@ -28,47 +28,47 @@
                 <a href="javascript:;" class="search"></a>
             </div>
             <ul class="people">
-                <li class="person" data-chat="person1">
-                    <img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />
-                    <span class="name">Thomas Bangalter</span>
-                    <span class="time">2:09 PM</span>
-                    <span class="preview">I was wondering...</span>
-                </li>
+                <!--<li class="person" data-chat="person1">-->
+                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
+                    <!--<span class="name">Thomas Bangalter</span>-->
+                    <!--<span class="time">2:09 PM</span>-->
+                    <!--<span class="preview">I was wondering...</span>-->
+                <!--</li>-->
                 <li class="person" data-chat="person2">
                     <img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />
                     <span class="name">Dog Woofson</span>
                     <span class="time">1:44 PM</span>
                     <span class="preview">I've forgotten how it felt before</span>
                 </li>
-                <li class="person" data-chat="person3">
-                    <img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />
-                    <span class="name">Louis CK</span>
-                    <span class="time">2:09 PM</span>
-                    <span class="preview">But we’re probably gonna need a new carpet.</span>
-                </li>
-                <li class="person" data-chat="person4">
-                    <img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />
-                    <span class="name">Bo Jackson</span>
-                    <span class="time">2:09 PM</span>
-                    <span class="preview">It’s not that bad...</span>
-                </li>
-                <li class="person" data-chat="person5">
-                    <img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />
-                    <span class="name">Michael Jordan</span>
-                    <span class="time">2:09 PM</span>
-                    <span class="preview">Wasup for the third time like is 
-you blind bitch</span>
-                </li>
-                <li class="person" data-chat="person6">
-                    <img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />
-                    <span class="name">Drake</span>
-                    <span class="time">2:09 PM</span>
-                    <span class="preview">howdoyoudoaspace</span>
-                </li>
+                <!--<li class="person" data-chat="person3">-->
+                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
+                    <!--<span class="name">Louis CK</span>-->
+                    <!--<span class="time">2:09 PM</span>-->
+                    <!--<span class="preview">But we’re probably gonna need a new carpet.</span>-->
+                <!--</li>-->
+                <!--<li class="person" data-chat="person4">-->
+                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
+                    <!--<span class="name">Bo Jackson</span>-->
+                    <!--<span class="time">2:09 PM</span>-->
+                    <!--<span class="preview">It’s not that bad...</span>-->
+                <!--</li>-->
+                <!--<li class="person" data-chat="person5">-->
+                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
+                    <!--<span class="name">Michael Jordan</span>-->
+                    <!--<span class="time">2:09 PM</span>-->
+                    <!--<span class="preview">Wasup for the third time like is -->
+<!--you blind bitch</span>-->
+                <!--</li>-->
+                <!--<li class="person" data-chat="person6">-->
+                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
+                    <!--<span class="name">Drake</span>-->
+                    <!--<span class="time">2:09 PM</span>-->
+                    <!--<span class="preview">howdoyoudoaspace</span>-->
+                <!--</li>-->
             </ul>
         </div>
         <div class="right">
-            <div class="top"><span>To: <span class="name">Dog Woofson</span></span></div>
+            <div class="top"><span>To: <span class="name"></span></span></div>
             <div class="chat" data-chat="person1">
                 <div class="conversation-start">
                     <span>Today, 6:48 AM</span>
@@ -202,7 +202,7 @@ you blind bitch</span>
   
   
 
-<script  src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/index.js"></script>
+<!--<script  src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/index.js"></script>-->
 
 
 
@@ -210,7 +210,6 @@ you blind bitch</span>
 </body>
 
 </html>
-<script src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/jQuery/jquery-3.4.1.js"></script>
 <script>
     $.ajax({
             type:'GET',
@@ -219,15 +218,53 @@ you blind bitch</span>
             jsonpCallback:"userHandler",
             url: "http://176.215.133.52:8080",
             success: function(data){
+<!--##########success#########-->
+                <!--获取ajax请求返回的数据-->
                 var name1=data[0]
-                <!--console.log(name1.username)-->
+                <!--动态添加<li>元素-->
                 var persons=$("ul[class=people]")
-                console.log(persons)
-                li01='<li class="person" data-chat="person999"><img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt=""><span class="name">Thomas Bangalter</span><span class="time">2:09 PM</span><span class="preview">I was wondering...</span></li>'
-                persons.append(li01)
-                var name_span=$("li[data-chat=person999]>span[class=name]")
+                li01='<li class="person" data-chat="person1"><img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt=""><span class="name">Thomas Bangalter</span><span class="time">2:09 PM</span><span class="preview">I was wondering...</span></li>'
+                persons.prepend(li01)
+                var name_span=$("li[data-chat=person1]>span[class=name]")
+                var message_span=$("li[data-chat=person1]>span[class=preview]")
+                var img=$("li[data-chat=person1]>img")
                 name_span.html(name1.username).css("color","red")
-                <!--<li class="person" data-chat="person1"><img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt=""><span class="name">Thomas Bangalter</span><span class="time">2:09 PM</span><span class="preview">I was wondering...</span></li>-->
+                message_span.html(name1.message).css("color","red")
+                img.attr("src","http://176.215.133.52:9999/save/project/bin/WebFrame/static/img_portrait/kasha.jpg")
+<!--重新执行index.js中的代码-->
+document.querySelector('.chat[data-chat=person1]').classList.add('active-chat');
+document.querySelector('.person[data-chat=person1]').classList.add('active');
+
+var friends = {
+  list: document.querySelector('ul.people'),
+  all: document.querySelectorAll('.left .person'),
+  name: '' }
+chat = {
+  container: document.querySelector('.container .right'),
+  current: null,
+  person: null,
+  name: document.querySelector('.container .right .top .name') };
+
+friends.all.forEach(function (f) {
+  f.addEventListener('mousedown', function () {
+    f.classList.contains('active') || setAciveChat(f);
+  });
+});
+
+function setAciveChat(f) {
+  friends.list.querySelector('.active').classList.remove('active');
+  f.classList.add('active');
+  chat.current = chat.container.querySelector('.active-chat');
+  chat.person = f.getAttribute('data-chat');
+  chat.current.classList.remove('active-chat');
+  var right1=$("div[class=right]>div[class=top]")
+  var div1='<div class="chat" data-chat="person1"><div class="conversation-start"><span>Today, 6:28 AM</span></div><div class="bubble you">Wasup</div><div class="bubble you">Wasup</div><div class="bubble you">Wasup for the third time like is <br>you blind bitch</div></div>'
+  right1.after(div1)
+  chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat');
+  friends.name = f.querySelector('.name').innerText;
+  chat.name.innerHTML = friends.name;
+}
+<!--##########success#########-->
             }
     })
 </script>

@@ -203,15 +203,21 @@ class Application:
                                password=sql_password,
                                database=sql_database,
                                charset=sql_charset)
-        cur = conn.cursor()
-        sql = "select * from Users;"
-        cur.execute(sql)
-        data = cur.fetchall()
-        # print(data)
+        cur1 = conn.cursor()
+        cur2 = conn.cursor()
+        # sql = "select * from Users;"
+        sql1 = "select u.user_id,u.user_name,i.userinfo_img from Users as u inner join Userinfo as i on " \
+               "u.user_id=i.userinfo_uid;"
+        cur1.execute(sql1)
+        sql2="select messages_info from Messages limit 1;"
+        cur2.execute(sql2)
+        data1 = cur1.fetchall()
+        data2 = cur2.fetchone()
+        print(data2)
         para = []
-        for i in data:
+        for i in data1:
             # print(i)
-            text = {"id": i[0], "username": i[1], "password": i[2]}
+            text = {"id": i[0], "username": i[1], "img": i[2].decode(),"message":data2}
             para.append(text)
         return json.dumps(para, ensure_ascii=False, indent=4)
 
