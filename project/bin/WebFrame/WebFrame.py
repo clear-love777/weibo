@@ -213,11 +213,12 @@ class Application:
         cur2.execute(sql2)
         data1 = cur1.fetchall()
         data2 = cur2.fetchone()
-        print(data2)
+        # print(data2)
+
         para = []
         for i in data1:
             # print(i)
-            text = {"id": i[0], "username": i[1], "img": i[2].decode(),"message":data2}
+            text = {"id": i[0], "username": i[1], "img": i[2],"message":data2}
             para.append(text)
         return json.dumps(para, ensure_ascii=False, indent=4)
 

@@ -54,7 +54,6 @@ class sql:
                 sql_getid = "select user_id from Users order by user_id desc limit 1"
                 self.cur.execute(sql_getid)
                 user_id = self.cur.fetchone()[0]
-                list[6]="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/"+list[6]
                 r_userinfo = self.cur.execute(sql_Userinfo,
                                               [user_id, list[2], list[3], list[4], list[5], list[6], list[7]])
                 if r_userinfo>0:

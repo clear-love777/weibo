@@ -9,7 +9,7 @@
   --grey: #999;
   --dark: #1a1a1a;
   --light: #e6e6e6;
-  --wrapper: 1000px;
+  --wrapper_chat: 1100px;
   --blue: #00b0ff;
 }
 
@@ -25,10 +25,11 @@ body {
   background-repeat: none;
 }
 
-.wrapper {
+.wrapper_chat {
   position: relative;
   left: 50%;
-  width: var(--wrapper);
+  width: var(--wrapper_chat);
+  float:left;
   height: 800px;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
@@ -37,9 +38,10 @@ body {
 .container {
   position: relative;
   top: 50%;
-  left: 50%;
+  left: 40%;
   width: 80%;
   height: 75%;
+  float:left;
   background-color: var(--white);
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
