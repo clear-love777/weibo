@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body onload="hiddens();emoji_addclick();">
 
   <div class="wrapper_chat">
     <div class="container">
@@ -193,16 +193,49 @@
             <!--</div>-->
             <div class="write">
                 <a href="#" class="write-link attach"></a>
-                <input type="text" />
-                <a  class="write-link smiley" onclick=""></a>
+                <input type="text" id="chat_text" />
+                <a  class="write-link smiley" id="show_emoji" onclick="hiddens()"></a>
                 <a href="/send_message" class="write-link send"></a>
-                <!--<div style="width:200px;height:200px;background-color:red;margin-left:200px"></div>-->
 
             </div>
 
         </div>
     </div>
-    <div class="wrapper" style="float:left;top:62%;background-color:white;"></div>
+
+    <div class="wrapper" id="emoji" style="float:left;top:62%;background-color:white;"></div>
+      <script>
+      function hidden(status){
+          var emoji=document.getElementById("emoji");
+          <!--console.log(emoji.children["0"]);-->
+          var a=emoji.children["0"];
+          var b=emoji.children["1"];
+          if (status==true){
+            status="display:block"
+          }else{
+            status="display:none"
+          }
+          a.setAttribute("style",status);
+          b.setAttribute("style",status);
+       }
+       function hiddens(){
+          <!--em=$("div[class=write]")-->
+          var em=$("#show_emoji")
+          var em_class=em.attr("class")
+          var emoji=document.getElementById("emoji");
+          var a=emoji.children["0"];
+          var b=emoji.children["1"];
+          var chat_text=$("#chat_text")
+          if(em_class=="write-link smiley hidden"){
+              em.attr("class","write-link smiley");
+              hidden(true)
+          }else{
+              em.attr("class","write-link smiley hidden")
+              hidden(false)
+          }
+      }
+      </script>
+
+    <!--<button type="button" onclick='hiddens()'>隐藏</button>-->
 </div>
 
   
@@ -213,7 +246,35 @@
 
 <script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/wEmoji.config.js"></script>
 <script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/wEmoji.js"></script>
-<script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/getEmoji.js"></script>
+<!--<script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/getEmoji.js"></script>-->
+<script>
+var we = new wantEmoji({
+	wrapper : ".wrapper",
+	callback : function(emojiCode){
+	    var img_src=this.explain(emojiCode)
+	    return img_src
+	},
+	autoInit : true
+});
+    var emojis=$("div[class=wEmoji-item]");
+    <!--var emjCode=$("div[class=wEmoji-item]").attr("data-emj")-->
+    <!--var img_src=we.callback(emjCode)-->
+      function emoji_addclick(){
+
+        for(var i=0;i<emojis.length;i++){
+            <!--$(emojis[i]).attr("onclick","emoji_click();")-->
+            $(emojis[i]).on("click",function(data){
+                var emjCode=$(data["currentTarget"]).attr("data-emj")
+                var img_src=we.callback(emjCode)
+                console.log(emjCode)
+                console.log(img_src)
+            })
+        }
+      }
+      function emoji_click(){
+
+      }
+</script>
 </body>
 
 </html>
@@ -274,6 +335,7 @@ function setAciveChat(f) {
   friends.name = f.querySelector('.name').innerText;
   chat.name.innerHTML = friends.name;
 }
+
 <!--##########success#########-->
             }
     })

@@ -244,7 +244,8 @@ wantEmoji.prototype = {
 			return false;
 
 			_self.callback.call(_self,emjCode);
-			console.log(emjCode);
+
+//			console.log(emjCode);
 		};
 
 		content["on"+down] = function(e){
