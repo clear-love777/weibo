@@ -20,7 +20,7 @@ body {
   text-rendering: optimizeLegibility;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
-  background-image: url("http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/image.jpg");
+  background-image: url("http://192.168.21.128:9999/save/project/bin/WebFrame/static/images/image.jpg");
   background-size: cover;
   background-repeat: none;
 }
@@ -93,7 +93,7 @@ body {
   margin-left: 10px;
   border: 1px solid var(--light);
   background-color: var(--blue);
-  background-image: url("http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/name-type.png");
+  background-image: url("http://192.168.21.128:9999/save/project/bin/WebFrame/static/images/name-type.png");
   background-repeat: no-repeat;
   background-position: top 12px left 14px;
   border-radius: 50%;
@@ -281,7 +281,7 @@ body {
   width: 20px;
   height: 42px;
   content: '';
-  background-image: url("http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/attachment.png");
+  background-image: url("http://192.168.21.128:9999/save/project/bin/WebFrame/static/images/attachment.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -291,7 +291,7 @@ body {
   width: 20px;
   height: 42px;
   content: '';
-  background-image: url("http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/smiley.png");
+  background-image: url("http://192.168.21.128:9999/save/project/bin/WebFrame/static/images/smiley.png");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -302,7 +302,7 @@ body {
   height: 42px;
   margin-left: 11px;
   content: '';
-  background-image: url("http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/send.png");
+  background-image: url("http://192.168.21.128:9999/save/project/bin/WebFrame/static/images/send.png");
   background-repeat: no-repeat;
   background-position: center;
 }

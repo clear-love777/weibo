@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:asp="http://www.w3.org/1999/html">
 
 <head>
 <meta charset="UTF-8">
@@ -9,13 +9,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/reset.min.css">
-<script src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/jQuery/jquery-3.4.1.js"></script>
+<link rel="stylesheet" href="http://192.168.21.128:9999/save/project/bin/WebFrame/static/css/reset.min.css">
+<script src="http://192.168.21.128:9999/save/project/bin/WebFrame/static/js/jQuery/jquery-3.4.1.js"></script>
 
-<link rel="stylesheet" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/style.css">
-<link rel="shortcut icon" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/img/favicon.ico"
+<link rel="stylesheet" href="http://192.168.21.128:9999/save/project/bin/WebFrame/static/css/style.css">
+<link rel="shortcut icon" href="http://192.168.21.128:9999/save/project/bin/WebFrame/static/img/favicon.ico"
           type="image/x-icon"/>
-<link rel="stylesheet" type="text/css" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/wEmoji.css">
+<link rel="stylesheet" type="text/css" href="http://192.168.21.128:9999/save/project/bin/WebFrame/static/css/wEmoji.css">
 
 </head>
 
@@ -36,7 +36,7 @@
                     <!--<span class="preview">I was wondering...</span>-->
                 <!--</li>-->
                 <li class="person" data-chat="person2">
-                    <img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />
+                    <img src="http://192.168.21.128:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />
                     <span class="name">Dog Woofson</span>
                     <span class="time">1:44 PM</span>
                     <span class="preview">I've forgotten how it felt before</span>
@@ -133,67 +133,9 @@
                     <!--But we’re probably gonna need a new carpet.-->
                 <!--</div>-->
             <!--</div>-->
-            <!--<div class="chat" data-chat="person4">-->
-                <!--<div class="conversation-start">-->
-                    <!--<span>Yesterday, 4:20 PM</span>-->
-                <!--</div>-->
-                <!--<div class="bubble me">-->
-                    <!--Hey human!-->
-                <!--</div>-->
-                <!--<div class="bubble me">-->
-                    <!--Umm... Someone took a shit in the hallway.-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--... what.-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--Are you serious?-->
-                <!--</div>-->
-                <!--<div class="bubble me">-->
-                    <!--I mean...-->
-                <!--</div>-->
-                <!--<div class="bubble me">-->
-                    <!--It’s not that bad...-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div class="chat" data-chat="person5">-->
-                <!--<div class="conversation-start">-->
-                    <!--<span>Today, 6:28 AM</span>-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--Wasup-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--Wasup-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--Wasup for the third time like is <br />you blind bitch-->
-                <!--</div>-->
-
-            <!--</div>-->
-            <!--<div class="chat" data-chat="person6">-->
-                <!--<div class="conversation-start">-->
-                    <!--<span>Monday, 1:27 PM</span>-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--So, how's your new phone?-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--You finally have a smartphone :D-->
-                <!--</div>-->
-                <!--<div class="bubble me">-->
-                    <!--Drake?-->
-                <!--</div>-->
-                <!--<div class="bubble me">-->
-                    <!--Why aren't you answering?-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--howdoyoudoaspace-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="write">
                 <a href="#" class="write-link attach"></a>
-                <input type="text" id="chat_text" />
+                <div style="width: 347px;height: 40px;float: left;"><textarea  id="chat_text" style="width: 347px;height: 40px;"></textarea></div>
                 <a  class="write-link smiley" id="show_emoji" onclick="hiddens()"></a>
                 <a href="/send_message" class="write-link send"></a>
 
@@ -221,10 +163,6 @@
           <!--em=$("div[class=write]")-->
           var em=$("#show_emoji")
           var em_class=em.attr("class")
-          var emoji=document.getElementById("emoji");
-          var a=emoji.children["0"];
-          var b=emoji.children["1"];
-          var chat_text=$("#chat_text")
           if(em_class=="write-link smiley hidden"){
               em.attr("class","write-link smiley");
               hidden(true)
@@ -244,8 +182,8 @@
 
 
 
-<script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/wEmoji.config.js"></script>
-<script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/wEmoji.js"></script>
+<script type="text/javascript" src="http://192.168.21.128:9999/save/project/bin/WebFrame/static/js/wEmoji.config.js"></script>
+<script type="text/javascript" src="http://192.168.21.128:9999/save/project/bin/WebFrame/static/js/wEmoji.js"></script>
 <!--<script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/getEmoji.js"></script>-->
 <script>
 var we = new wantEmoji({
@@ -264,13 +202,23 @@ var we = new wantEmoji({
         for(var i=0;i<emojis.length;i++){
             <!--$(emojis[i]).attr("onclick","emoji_click();")-->
             $(emojis[i]).on("click",function(data){
-                var emjCode=$(data["currentTarget"]).attr("data-emj")
-                var img_src=we.callback(emjCode)
-                console.log(emjCode)
-                console.log(img_src)
+                var emjCode=$(data["currentTarget"]).attr("data-emj");
+                var img_obj=we.callback(emjCode);
+                // console.log(emjCode);
+                // console.log(img_obj);
+                reg=/".+"/;
+                var img_src=img_obj.match(reg)[0].replace("\"","").replace("\"","")
+                // console.log(img_src);
+                var chat_text_value=$("#chat_text").html();
+                $("#chat_text").html(chat_text_value+"<img style='width: 25px;height: 25px;' src="+img_src+">")
             })
         }
       }
+      var chat_text=$("#chat_text");
+      chat_text.keydown(function (data) {
+            console.log($(data))
+            chat_text.html($(data));
+      });
       function emoji_click(){
 
       }
@@ -279,64 +227,64 @@ var we = new wantEmoji({
 
 </html>
 <script>
-    $.ajax({
-            type:'GET',
-            dataType:'jsonp',
-            jsonp:'callback',
-            jsonpCallback:"userHandler",
-            url: "http://176.215.133.52:8080",
-            success: function(data){
-<!--##########success#########-->
-                <!--获取ajax请求返回的数据-->
-                var name1=data[0]
-                <!--动态添加<li>元素-->
-                var persons=$("ul[class=people]")
-                li01='<li class="person" data-chat="person1"><img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt=""><span class="name">Thomas Bangalter</span><span class="time">2:09 PM</span><br><span class="preview">I was wondering...</span></li>'
-                persons.prepend(li01)
-                var name_span=$("li[data-chat=person1]>span[class=name]")
-                var message_span=$("li[data-chat=person1]>span[class=preview]")
-                var img=$("li[data-chat=person1]>img")
-                name_span.html(name1.username).css("color","red")
-                message_span.html(name1.message).css("color","red")
-                img.attr("src",""+name1.img+"")
-<!--重新执行index.js中的代码-->
-document.querySelector('.chat[data-chat=person1]').classList.add('active-chat');
-document.querySelector('.person[data-chat=person1]').classList.add('active');
-
-var friends = {
-  list: document.querySelector('ul.people'),
-  all: document.querySelectorAll('.left .person'),
-  name: '' }
-chat = {
-  container: document.querySelector('.container .right'),
-  current: null,
-  person: null,
-  name: document.querySelector('.container .right .top .name') };
-
-friends.all.forEach(function (f) {
-  f.addEventListener('mousedown', function () {
-    f.classList.contains('active') || setAciveChat(f);
-  });
-});
-
-function setAciveChat(f) {
-  friends.list.querySelector('.active').classList.remove('active');
-  f.classList.add('active');
-  chat.current = chat.container.querySelector('.active-chat');
-  chat.person = f.getAttribute('data-chat');
-  chat.current.classList.remove('active-chat');
-  var right_top=$("div[class=right]>div[class=top]")
-  var div_chat='<div class="chat" data-chat="person1"><div class="conversation-start"><span>Today, 6:28 AM</span></div><div class="bubble you">Wasup</div><div class="bubble you">Wasup</div><div class="bubble you">Wasup for the third time like is <br>you blind bitch</div></div>'
-  var div_emoji='<div class="wrapper" style="float:left"></div>'
-  <!--right_top.after(div_chat)-->
-  <!--var wrapper_chat=$("div[class=wrapper_chat]")-->
-  <!--wrapper_chat.append(div_emoji)-->
-  chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat');
-  friends.name = f.querySelector('.name').innerText;
-  chat.name.innerHTML = friends.name;
-}
-
-<!--##########success#########-->
-            }
-    })
+//     $.ajax({
+//             type:'GET',
+//             dataType:'jsonp',
+//             jsonp:'callback',
+//             jsonpCallback:"userHandler",
+//             url: "http://176.215.133.52:8080",
+//             success: function(data){
+// <!--##########success#########-->
+//                 <!--获取ajax请求返回的数据-->
+//                 var name1=data[0]
+//                 <!--动态添加<li>元素-->
+//                 var persons=$("ul[class=people]")
+//                 li01='<li class="person" data-chat="person1"><img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt=""><span class="name">Thomas Bangalter</span><span class="time">2:09 PM</span><br><span class="preview">I was wondering...</span></li>'
+//                 persons.prepend(li01)
+//                 var name_span=$("li[data-chat=person1]>span[class=name]")
+//                 var message_span=$("li[data-chat=person1]>span[class=preview]")
+//                 var img=$("li[data-chat=person1]>img")
+//                 name_span.html(name1.username).css("color","red")
+//                 message_span.html(name1.message).css("color","red")
+//                 img.attr("src",""+name1.img+"")
+// <!--重新执行index.js中的代码-->
+// document.querySelector('.chat[data-chat=person1]').classList.add('active-chat');
+// document.querySelector('.person[data-chat=person1]').classList.add('active');
+//
+// var friends = {
+//   list: document.querySelector('ul.people'),
+//   all: document.querySelectorAll('.left .person'),
+//   name: '' }
+// chat = {
+//   container: document.querySelector('.container .right'),
+//   current: null,
+//   person: null,
+//   name: document.querySelector('.container .right .top .name') };
+//
+// friends.all.forEach(function (f) {
+//   f.addEventListener('mousedown', function () {
+//     f.classList.contains('active') || setAciveChat(f);
+//   });
+// });
+//
+// function setAciveChat(f) {
+//   friends.list.querySelector('.active').classList.remove('active');
+//   f.classList.add('active');
+//   chat.current = chat.container.querySelector('.active-chat');
+//   chat.person = f.getAttribute('data-chat');
+//   chat.current.classList.remove('active-chat');
+//   var right_top=$("div[class=right]>div[class=top]")
+//   var div_chat='<div class="chat" data-chat="person1"><div class="conversation-start"><span>Today, 6:28 AM</span></div><div class="bubble you">Wasup</div><div class="bubble you">Wasup</div><div class="bubble you">Wasup for the third time like is <br>you blind bitch</div></div>'
+//   var div_emoji='<div class="wrapper" style="float:left"></div>'
+//   <!--right_top.after(div_chat)-->
+//   <!--var wrapper_chat=$("div[class=wrapper_chat]")-->
+//   <!--wrapper_chat.append(div_emoji)-->
+//   chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat');
+//   friends.name = f.querySelector('.name').innerText;
+//   chat.name.innerHTML = friends.name;
+// }
+//
+// <!--##########success#########-->
+//             }
+//     })
 </script>

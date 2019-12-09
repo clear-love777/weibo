@@ -330,7 +330,7 @@ wantEmoji.prototype = {
 				path = _self.emojis[eid].path;
 				url = name+"."+type;
 
-			return '<img src="'+"http://176.215.133.52:9999/save/"+path+url+'" />';
+			return '<img src="'+"http://192.168.21.128:9999/save/"+path+url+'" />';
 		});
 	},
 
