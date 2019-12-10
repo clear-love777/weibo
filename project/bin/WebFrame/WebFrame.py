@@ -205,21 +205,31 @@ class Application:
                                charset=sql_charset)
         cur1 = conn.cursor()
         cur2 = conn.cursor()
+        cur3 = conn.cursor()
         # sql = "select * from Users;"
         sql1 = "select u.user_id,u.user_name,i.userinfo_img from Users as u inner join Userinfo as i on " \
                "u.user_id=i.userinfo_uid;"
         cur1.execute(sql1)
-        sql2="select messages_info from Messages limit 1;"
+        # sql2="select messages_info from Messages limit 1;"
+        sql2="select messages_userid,messages_atid,messages_info from Messages;"
+        sql3="select Users.user_id,Users.user_name,Userinfo.userinfo_img,Messages.messages_userid,\
+                Messages.messages_atid,Messages.messages_info \
+                from Users,Userinfo,Messages \
+                where Users.user_id=Userinfo.userinfo_uid and Users.user_id=messages_userid;"
+        cur3.execute(sql3)
         cur2.execute(sql2)
         data1 = cur1.fetchall()
-        data2 = cur2.fetchone()
+        data2 = cur2.fetchall()
+        data3=cur3.fetchall()
         # print(data2)
-
         para = []
-        for i in data1:
-            # print(i)
-            text = {"id": i[0], "username": i[1], "img": i[2],"message":data2}
+        for i in data3:
+            text={"id":i[0],"username": i[1], "img": i[2],"myid":i[3],"orthersid":i[4],"message":i[5]}
             para.append(text)
+        # for i in data1:
+        #     # print(i)
+        #     text = {"id": i[0], "username": i[1], "img": i[2],"message":data2}
+        #     para.append(text)
         return json.dumps(para, ensure_ascii=False, indent=4)
 
 if __name__ == '__main__':
