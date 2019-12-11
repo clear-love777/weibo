@@ -5,7 +5,7 @@ var path = "",  //项目所在的根地址
 	"paopao" : {
 		"name" : "泡泡", //名字
 		"col" : 10, //每一行最大的表情个数(建议填选的时候值不要太大或太小)
-		"path" : path+"emojiSources/paopao/", //相对于项目根地址的路径
+		"path" : "http://176.215.133.52:9999/save/emojiSources/paopao/", //相对于项目根地址的路径
 		"enable" : true, //是否启用本表情包
 		"sources" : ["1.jpg","2.jpg","3.jpg","4.jpg","6.jpg","7.jpg","8.jpg",
 					 "9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg",
@@ -18,7 +18,7 @@ var path = "",  //项目所在的根地址
 	"paopao2" : {
 		"name" : "泡泡2",
 		"col" : 4,
-		"path" : path+"emojiSources/paopao/",
+		"path" : "http://176.215.133.52:9999/save/emojiSources/paopao/",
 		"enable" : true,
 		"sources" : ["1.jpg","2.jpg","3.jpg","4.jpg","6.jpg","7.jpg","8.jpg",
 					 "9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg",
@@ -31,7 +31,7 @@ var path = "",  //项目所在的根地址
 	"paopao3" : {
 		"name" : "泡泡3",
 		"col" : 8,
-		"path" : path+"emojiSources/paopao/",
+		"path" : "http://176.215.133.52:9999/save/emojiSources/paopao/",
 		"enable" : true,
 		"sources" : ["1.jpg","2.jpg","3.jpg","4.jpg","6.jpg","7.jpg","8.jpg",
 					 "9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg",
@@ -44,7 +44,7 @@ var path = "",  //项目所在的根地址
 	"huaji" : {
 		"name" : "滑稽",
 		"col" : 8,
-		"path" : path+"emojiSources/huaji/",
+		"path" : "http://176.215.133.52:9999/save/emojiSources/huaji/",
 		"enable" : true,
 		"sources" : ["1.jpg","2.jpg","3.jpg","4.jpg","6.jpg","7.jpg","8.jpg",
 					 "9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","18.jpg","19.jpg","22.jpg"
@@ -53,7 +53,7 @@ var path = "",  //项目所在的根地址
 	"baidu" : {
 		"name" : "百度表情",
 		"col" : 10,
-		"path" : path+"emojiSources/tiebaemoji/",
+		"path" : "http://176.215.133.52:9999/save/emojiSources/tiebaemoji/",
 		"enable" : true,
 		"sources" : ["1.png","2.png","3.png","4.png","6.png","7.png","8.png",
 					 "9.png","10.png","11.png","12.png","13.png","14.png","15.png","16.png",

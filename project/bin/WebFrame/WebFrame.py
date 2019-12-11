@@ -224,7 +224,7 @@ class Application:
         # print(data2)
         para = []
         for i in data3:
-            text={"id":i[0],"username": i[1], "img": i[2],"myid":i[3],"orthersid":i[4],"message":i[5]}
+            text={"id":i[0],"username": i[1], "img": i[2],"myid":i[3],"othersid":i[4],"message":i[5]}
             para.append(text)
         # for i in data1:
         #     # print(i)

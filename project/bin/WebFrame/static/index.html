@@ -1,399 +1,130 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:asp="http://www.w3.org/1999/html">
-
+﻿<!DOCTYPE html>
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Direct Messaging</title>
-
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/reset.min.css">
-<script src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/jQuery/jquery-3.4.1.js"></script>
-
-<link rel="stylesheet" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/style.css">
-<link rel="shortcut icon" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/img/favicon.ico"
-          type="image/x-icon"/>
-<link rel="stylesheet" type="text/css" href="http://176.215.133.52:9999/save/project/bin/WebFrame/static/css/wEmoji.css">
-
+    <meta charset="utf-8">
+    <title>百度网盘-首页</title>
+    <script type="text/javascript" src="http://176.215.133.52:9999/save/text01/static/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="http://176.215.133.52:9999/save/text01/static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://176.215.133.52:9999/save/text01/static/css/bootstrap.min.css"/>
 </head>
-
-<body onload="hiddens();emoji_click();">
-
-  <div class="wrapper_chat">
-    <div class="container">
-        <div class="left">
-            <div class="top">
-                <input type="text" placeholder="Search" />
-                <a href="javascript:;" class="search"></a>
-            </div>
-            <ul class="people">
-                <!--<li class="person" data-chat="person1">-->
-                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
-                    <!--<span class="name">Thomas Bangalter</span>-->
-                    <!--<span class="time">2:09 PM</span>-->
-                    <!--<span class="preview">I was wondering...</span>-->
-                <!--</li>-->
-<!--                <li class="person" data-chat="person2">-->
-<!--                    <img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
-<!--                    <span class="name">Dog Woofson</span>-->
-<!--                    <span class="time">1:44 PM</span>-->
-<!--                    <span class="preview">I've forgotten how it felt before</span>-->
-<!--                </li>-->
-                <!--<li class="person" data-chat="person3">-->
-                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
-                    <!--<span class="name">Louis CK</span>-->
-                    <!--<span class="time">2:09 PM</span>-->
-                    <!--<span class="preview">But we’re probably gonna need a new carpet.</span>-->
-                <!--</li>-->
-                <!--<li class="person" data-chat="person4">-->
-                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
-                    <!--<span class="name">Bo Jackson</span>-->
-                    <!--<span class="time">2:09 PM</span>-->
-                    <!--<span class="preview">It’s not that bad...</span>-->
-                <!--</li>-->
-                <!--<li class="person" data-chat="person5">-->
-                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
-                    <!--<span class="name">Michael Jordan</span>-->
-                    <!--<span class="time">2:09 PM</span>-->
-                    <!--<span class="preview">Wasup for the third time like is -->
-<!--you blind bitch</span>-->
-                <!--</li>-->
-                <!--<li class="person" data-chat="person6">-->
-                    <!--<img src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/images/dog.png" alt="" />-->
-                    <!--<span class="name">Drake</span>-->
-                    <!--<span class="time">2:09 PM</span>-->
-                    <!--<span class="preview">howdoyoudoaspace</span>-->
-                <!--</li>-->
-            </ul>
-        </div>
-        <div class="right">
-            <div class="top"><span>To: <span class="name"></span></span></div>
-<!--            <div class="chat" data-chat="person1">-->
-<!--                <div class="conversation-start">-->
-<!--                    <span>Today, 6:48 AM</span>-->
-<!--                </div>-->
-<!--                <div class="bubble you">-->
-<!--                    Hello,-->
-<!--                </div>-->
-<!--                <div class="bubble you">-->
-<!--                    it's me.-->
-<!--                </div>-->
-<!--                <div class="bubble you">-->
-<!--                    I was wondering...-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="chat" data-chat="person2">-->
-<!--                <div class="conversation-start">-->
-<!--                    <span>Today, 5:38 PM</span>-->
-<!--                </div>-->
-<!--                <div class="bubble you">-->
-<!--                    Hello, can you hear me?-->
-<!--                </div>-->
-<!--                <div class="bubble you">-->
-<!--                    I'm in California dreaming-->
-<!--                </div>-->
-<!--                <div class="bubble me">-->
-<!--                    ... about who we used to be.-->
-<!--                </div>-->
-<!--                <div class="bubble me">-->
-<!--                    Are you serious?-->
-<!--                </div>-->
-<!--                <div class="bubble you">-->
-<!--                    When we were younger and free...-->
-<!--                </div>-->
-<!--                <div class="bubble you">-->
-<!--                    I've forgotten how it felt before-->
-<!--                </div>-->
-<!--            </div>-->
-            <!--<div class="chat" data-chat="person3">-->
-                <!--<div class="conversation-start">-->
-                    <!--<span>Today, 3:38 AM</span>-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--Hey human!-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--Umm... Someone took a shit in the hallway.-->
-                <!--</div>-->
-                <!--<div class="bubble me">-->
-                    <!--... what.-->
-                <!--</div>-->
-                <!--<div class="bubble me">-->
-                    <!--Are you serious?-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--I mean...-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--It’s not that bad...-->
-                <!--</div>-->
-                <!--<div class="bubble you">-->
-                    <!--But we’re probably gonna need a new carpet.-->
-                <!--</div>-->
-            <!--</div>-->
-            <div class="write">
-                <a href="#" class="write-link attach"></a>
-                <div style="width: 347px;height: 40px;float: left;">
-                    <textarea  id="chat_text"style="width: 347px;height: 40px;"></textarea>
-                </div>
-                <a  class="write-link smiley" id="show_emoji" onclick="hiddens()"></a>
-                <a href="/send_message" class="write-link send"></a>
-
-            </div>
-
-        </div>
+<body>
+<nav class="navbar navbar-default">
+<div class="container">
+    <div class="navbar-header page-scorll navbar-left   ">
+        <a href="/" class="navbar-brand smoothie logo logo-light"><img src="http://176.215.133.52:9999/save/text01/static/img/logo.png" alt=""></a>
     </div>
-
-    <div class="wrapper" id="emoji" style="float:left;top:62%;background-color:white;"></div>
-      <script>
-      function hidden(status){
-          var emoji=document.getElementById("emoji");
-          <!--console.log(emoji.children["0"]);-->
-          var a=emoji.children["0"];
-          var b=emoji.children["1"];
-          if (status==true){
-            status="display:block"
-          }else{
-            status="display:none"
-          }
-          a.setAttribute("style",status);
-          b.setAttribute("style",status);
-       }
-       function hiddens(){
-          <!--em=$("div[class=write]")-->
-          var em=$("#show_emoji");
-          var em_class=em.attr("class");
-          if(em_class=="write-link smiley hidden"){
-              em.attr("class","write-link smiley");
-              hidden(true)
-          }else{
-              em.attr("class","write-link smiley hidden");
-              hidden(false)
-          }
-      }
-      </script>
-
-    <!--<button type="button" onclick='hiddens()'>隐藏</button>-->
+    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="https://www.baidu.com" target="_blank">百度搜索</a></li>
+        <li><a href="/mobile-index.html">官方微博</a></li>
+        <li><a href="#">字典查询</a></li>
+        <li><a href="/chat.html">在线聊天</a></li>
+        <li><a href="#">会员中心</a></li>
+      </ul>
+    </div>
 </div>
-
-  
-
-<!--<script  src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/index.js"></script>-->
-
-
-
-<script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/wEmoji.config.js"></script>
-<script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/wEmoji.js"></script>
-<!--<script type="text/javascript" src="http://176.215.133.52:9999/save/project/bin/WebFrame/static/js/getEmoji.js"></script>-->
-<script>
-var we = new wantEmoji({
-	wrapper : ".wrapper",
-	callback : function(emojiCode){
-	    var img_src=this.explain(emojiCode);
-	    return img_src
-	},
-	autoInit : true
-});
-    var emojis=$("div[class=wEmoji-item]");
-    // var emjCode=$("div[class=wEmoji-item]").attr("data-emj")
-    // var img_src=we.callback(emjCode)
-    function emoji_click(){
-// =================emoji_click==================
-//判断selector类型
-var getSelectorType = (function(){
-	var checkIdName = function(selector){
-		var idReg = new RegExp("#");
-		return (idReg.test(selector) ? "id" : checkClassName(selector));
-	};
-	var checkClassName = function(selector){
-		var classReg = new RegExp(".");
-		return (classReg.test(selector) ? "className" : "tagName");
-	};
-	return function(selector){
-		return checkIdName(selector);
-	};
-});
-
-        //获取目标元素
-var getTargetNode = function(ele,selector){
-	var type = getSelectorType(selector),
-		nSec = selector.replace(/.|#/,"");
-	if(ele === document){
-		return null;
-	}
-
-	if( new RegExp(nSec).test(ele[type]) ){
-		return ele;
-	} else {
-		return getTargetNode(ele.parentNode,selector);
-	}
-};
-var down = "ontouchstart" in document ? "touchstart" : "mousedown";
-var up = "ontouchend" in document ? "touchend" : "mouseup";
-var move = "ontouchmove" in document ? "touchmove" : "mousemove";
-            var chat_text=document.getElementById("chat_text");
-            var parent_div=$(chat_text)[0].parentElement
-            // $(parent_div).append('<img src="emojiSources/paopao/18.png" style="width:20px;height:20px;position: relative;bottom:40px">')
-            var content=document.querySelectorAll("div.wEmoji-content")[0]
-            content.onclick = function(e){
-                e = e || event;
-                var emjCode=e.path[1].getAttribute("data-emj");
-                var img_src=e.path[0].getAttribute("src");
-                var old_text=$(chat_text).val();
-                $(chat_text).val(old_text+emjCode);
-                $(parent_div).append('<img src="'+img_src+'" style="width:20px;height:20px;position: relative;bottom:40px">')
-                // console.log(emjCode)
-                // console.log(img_src)
-            };
-            content["on"+down] = function(e){
-			e = e || event;
-			drag = true;
-			x = e.pageX || e.touches[0].pageX;
-		};
-
-		content["on"+move] = function(e){
-			e = e || event;
-			e.stopPropagation();
-			e.preventDefault();
-		};
-
-		content["on"+up] = function(e){
-			e = e || event;
-			if(drag){
-				drag = false;
-				var endX = e.pageX || e.changedTouches[0].pageX,
-					dis = endX - x,
-					idx;
-
-				if(dis > 50){
-					idx = Math.max(_self.activePage - 1,0);
-					_self.showPage(idx);
-				} else if (dis < -50){
-					idx = Math.min(_self.activePage + 1,_self.totalPage - 1);
-					_self.showPage(idx);
-				}
-				x = 0;
-			}
-		};
-		$(chat_text).keydown(function(){
-            $(parent_div).children("img").remove()
-		})
-// ===============emoji_click====================
-    }
-      function emoji_addclick(){
-
-        for(var i=0;i<emojis.length;i++){
-            // $(emojis[i]).attr("onclick","emoji_click();")
-            $(emojis[i]).on("click",function(data){
-                var emjCode=$(data["currentTarget"]).attr("data-emj");
-                var img_obj=we.callback(emjCode);
-                // console.log(emjCode);
-                // console.log(img_obj);
-                reg=/".+"/;
-                var img_src=img_obj.match(reg)[0].replace("\"","").replace("\"","")
-                // console.log(img_src);
-                var chat_text_value=$("#chat_text").html();
-                $("#chat_text").html(chat_text_value+"<img style='width: 25px;height: 25px;' src="+img_src+">")
-            })
-        }
-      }
+</nav>
+<div class="modal fade" id="mylogin">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="modal-title" align="center">登录</h4>
+                <br/>
+                <form class="form-horizontal" role="form" action="/login" method="post">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-offset-2 col-sm-2 control-label">账号</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="请输入您的账号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-offset-2 col-sm-2 control-label">密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="请输入您的密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-5">
+                            <button id="submitBtn" type="submit" class="btn btn-default btn-block btn-primary">登录
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" id="myreg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 class="modal-title" align="center">注册</h4>
+                <br/>
+                <form class="form-horizontal" role="form" action="/reg" method="post" enctype="MultiPart/Form-data">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-offset-2 col-sm-2 control-label">账号</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" id="rname" name="rname" placeholder="请输入您的账号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-offset-2 col-sm-2 control-label">密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="rpassword" name="rpassword" placeholder="请输入您的密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-offset-2 col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-5">
+                            <input type="password" class="form-control" id="qpassword" name="qpassword" placeholder="请再次输入您的密码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile" class="col-sm-offset-2 col-sm-2 control-label">上传头像</label>
+                        <div class="col-sm-5">
+                            <input type="file" id="exampleInputFile" name="exampleInputFile" class="file0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-5">
+                            <button id="rsubmitBtn" type="submit" class="btn btn-default btn-block btn-primary">注册
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="container jumbotron">
+  <h1>Hello, world!</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam dolores, eum fugiat harum id nisi nostrum officiis quia, reprehenderit, tempore totam ullam vero! Asperiores atque dolorem eligendi expedita laborum sint suscipit tempora! Culpa eos illo, magni nemo placeat praesentium quasi quibusdam quisquam voluptates! Atque, ducimus obcaecati optio possimus quis voluptatem!</p>
+  <p class="navbar-right" style="padding: 0px 19px"><a class="btn btn-primary btn-lg treg" href="/register.html" role="button">注册</a></p>
+  <p class="navbar-right"><a class="btn btn-primary btn-lg tbox" href="/login.html" role="button">登录</a></p>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".tbox").click(function () {
+            $('#mylogin').modal('show') //显示模态框
+        });
+        $(".treg").click(function () {
+            $('#myreg').modal('show') //显示模态框
+        });
+    });
 </script>
 </body>
-
 </html>
-<script>
-     $.ajax({
-             type:'GET',
-             dataType:'jsonp',
-             jsonp:'callback',
-             jsonpCallback:"userHandler",
-             url: "http://176.215.133.52:8080",
-             success: function(data) {
-                 // ##########success#########
-                 //                 获取ajax请求返回的数据
-                 var messages = [];
-                 for (var i = 0; i < data.length; i++) {
-                     console.log(data[i]);
-                     messages.push(data[i].message);
-                 }
-
-                 console.log(messages);
-                 var name1=data[0];
-                 // 动态添加元素
-                 var persons=$("ul[class=people]");
-                 var data_chat="person"+name1.id;
-                 var img_src=name1.img;
-                 var show_messages=data[0].message;
-                 var show_name=name1.username;
-                 li01='<li class="person" data-chat='+data_chat+'>' +
-                     '<img src='+img_src+' alt="">' +
-                     '<span class="name">'+show_name+'</span>' +
-                     '<span class="time">2:09 PM</span><br>' +
-                     '<span class="preview">'+show_messages+'</span>' +
-                     '</li>';
-                 persons.prepend(li01);
-                 var right_div='<div class="chat" data-chat='+data_chat+'>\n' +
-                     '                <div class="conversation-start">\n' +
-                     '                    <span>Today, 6:48 AM</span>\n' +
-                     '                </div>\n' +
-                     '                <div class="bubble you">\n' +
-                     '                    '+messages[0]+'' +
-                     '                </div>\n' +
-                     '                <div class="bubble you">\n' +
-                     '                    '+messages[1]+'' +
-                     '                </div>\n' +
-                     '                <div class="bubble you">\n' +
-                     '                    I was wondering...\n' +
-                     '                </div>\n' +
-                     '            </div>';
-                 var right_top=$("div[class=right]>div[class=top]");
-                 right_top.after(right_div);
-                 //var name_span=$("li[data-chat=person1]>span[class=name]")
-                 //var message_span=$("li[data-chat=person1]>span[class=preview]")
-                 //var img=$("li[data-chat=person1]>img")
-                 //name_span.html(name1.username).css("color","red")
-                 //message_span.html(name1.message).css("color","red")
-                 //img.attr("src",""+name1.img+"")
- //重新执行index.js中的代码
- document.querySelector('.chat[data-chat=person1]').classList.add('active-chat');
- document.querySelector('.person[data-chat=person1]').classList.add('active');
-
- var friends = {
-   list: document.querySelector('ul.people'),
-   all: document.querySelectorAll('.left .person'),
-   name: '' };
- chat = {
-   container: document.querySelector('.container .right'),
-   current: null,
-   person: null,
-   name: document.querySelector('.container .right .top .name') };
-
- friends.all.forEach(function (f) {
-   f.addEventListener('mousedown', function () {
-     f.classList.contains('active') || setAciveChat(f);
-   });
- });
-
- function setAciveChat(f) {
-   friends.list.querySelector('.active').classList.remove('active');
-   f.classList.add('active');
-   chat.current = chat.container.querySelector('.active-chat');
-   chat.person = f.getAttribute('data-chat');
-   chat.current.classList.remove('active-chat');
-   // var right_top=$("div[class=right]>div[class=top]")
-   // var div_chat='<div class="chat" data-chat="person1"><div class="conversation-start"><span>Today, 6:28 AM</span></div><div class="bubble you">Wasup</div><div class="bubble you">Wasup</div><div class="bubble you">Wasup for the third time like is <br>you blind bitch</div></div>'
-   // var div_emoji='<div class="wrapper" style="float:left"></div>'
-   // right_top.after(div_chat)
-   // var wrapper_chat=$("div[class=wrapper_chat]")
-   // wrapper_chat.append(div_emoji)
-   chat.container.querySelector('[data-chat="' + chat.person + '"]').classList.add('active-chat');
-   friends.name = f.querySelector('.name').innerText;
-   chat.name.innerHTML = friends.name;
- }
-
- // ##########success#########
-             }
-     })
-</script>

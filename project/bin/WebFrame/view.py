@@ -8,7 +8,7 @@ def ai(*args):
 def bye(*args):
     return "Good bye"
 def index(*args):
-    with open(STATIC_DIR + "/login.html") as f:
+    with open(STATIC_DIR + "/index.html") as f:
         return f.read()
 def login(list):
     if sql.login(list):
