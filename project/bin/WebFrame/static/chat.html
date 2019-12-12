@@ -139,8 +139,9 @@
                     <textarea  id="chat_text"style="width: 347px;height: 40px;"></textarea>
                 </div>
                 <a  class="write-link smiley" id="show_emoji" onclick="hiddens()"></a>
-                <a href="/send_message" class="write-link send"></a>
-
+                <form>
+                    <button class="write-link send" type="submit"></button>
+                </form>
             </div>
 
         </div>
@@ -234,9 +235,9 @@ var down = "ontouchstart" in document ? "touchstart" : "mousedown";
 var up = "ontouchend" in document ? "touchend" : "mouseup";
 var move = "ontouchmove" in document ? "touchmove" : "mousemove";
             var chat_text=document.getElementById("chat_text");
-            var parent_div=$(chat_text)[0].parentElement
+            var parent_div=$(chat_text)[0].parentElement;
             // $(parent_div).append('<img src="emojiSources/paopao/18.png" style="width:20px;height:20px;position: relative;bottom:40px">')
-            var content=document.querySelectorAll("div.wEmoji-content")[0]
+            var content=document.querySelectorAll("div.wEmoji-content")[0];
             content.onclick = function(e){
                 e = e || event;
                 var emjCode=e.path[1].getAttribute("data-emj");
@@ -314,90 +315,86 @@ var move = "ontouchmove" in document ? "touchmove" : "mousemove";
                  // ##########success#########
                  //                 获取ajax请求返回的数据
                  var all_messages=[];
-                 var messages=["aa","bb"];
-                 var ids=[];
+                 var users_id=[];
+                 var users=[];
                  var all_msg=[];
                  var fi_msg=[];
+                 console.log(data);
                  for(var i=0;i<data.length;i++){
-                     if(ids.includes(data[i].id)){
+                     if(users_id.includes(data[i].id)){
                          continue;
                      }else{
-                         ids.push(data[i].id)
+                         users_id.push(data[i].myid);
+                         users.push({"id":data[i].myid,"username":data[i].username,"img":data[i].img,"other_id":data[i].othersid,"other_name":data[i].other_name});
                      }
                  }
-                 for(var r in ids){
+                 for(var r in users){
                      for(var c in data){
-                         if(data[c].id==ids[r]){
-                             all_messages.push({"self":ids[r],"other":data[c].othersid,"message":data[c].message});
+                         if(data[c].id==users[r]["id"]){
+                             all_messages.push({"self":users[r]["id"],"other":data[c].othersid,"message":data[c].message});
                          }
                      }
                  }
-                 for (var r in ids) {
+                 for (var r in users) {
                      for(var c in all_messages){
-                         if(all_messages[c]["self"]==ids[r] || all_messages[c]["other"]==ids[r]){
-                             if(all_messages[c]["self"]==ids[r]){
-                                 all_msg.push([ids[r],"self",all_messages[c]["message"]])
+                         if(all_messages[c]["self"]==users[r]["id"] || all_messages[c]["other"]==users[r]["id"]){
+                             if(all_messages[c]["self"]==users[r]["id"]){
+                                 all_msg.push([users[r]["id"],"self",all_messages[c]["message"]])
                              }
-                             if(all_messages[c]["other"]==ids[r]){
-                                 all_msg.push([ids[r],"other",all_messages[c]["message"]])
+                             if(all_messages[c]["other"]==users[r]["id"]){
+                                 all_msg.push([users[r]["id"],"other",all_messages[c]["message"]])
                              }
                          }
                      }
                  }
-                 for (var r in ids) {
-                     fi_msg.push([ids[r]])
+                 for (var r in users) {
+                     fi_msg.push({"users":{"id":users[r]["id"],"username":users[r]["username"],"img":users[r]["img"],"other_id":users[r]["other_id"],"other_name":users[r]["other_name"]},"message":[]})
                  }
-                 for (var r in ids) {
+                 for (var r in users) {
                      for (var i in all_msg) {
-                         if(all_msg[i][0]==ids[r]) {
+                         if(all_msg[i][0]==users[r]["id"]) {
                              // console.log(all_msg[i])
-                             fi_msg[r].push([all_msg[i][1], all_msg[i][2]])
+                             fi_msg[r]["message"].push([all_msg[i][1], all_msg[i][2]])
                          }
                      }
                  }
-                 console.log(fi_msg);
-                 // for(var i in self_messages){
-                 //     console.log(self_messages[i]);
-                 // }
-                 // for(var i in other_messages){
-                 //     console.log(other_messages[i]);
-                 // }
-                 var name1=data[0];
-                 // 动态添加元素
-                 var persons=$("ul[class=people]");
-                 var data_chat="person"+name1.id;
-                 var img_src=name1.img;
-                 var show_messages=data[0].message;
-                 var show_name=name1.username;
-                 li01='<li class="person" data-chat='+data_chat+'>' +
+                 // console.log(fi_msg);
+                 for(var i in fi_msg){
+                     //动态添加元素=================================
+                     console.log(fi_msg[i]);
+                     var persons=$("ul[class=people]");//左边
+                     var right_top=$("div[class=right]>div[class=top]"); //右边
+                     var data_chat="person"+fi_msg[i]["users"]["id"];
+                     var img_src=fi_msg[i]["users"]["img"];
+                     var show_name=fi_msg[i]["users"]["username"];
+                     var other_name=fi_msg[i]["users"]["other_name"];
+                     var messages=fi_msg[i]["message"];
+                     for(var i in messages){
+                         if(messages[i][0]=="self"){
+                             var show_messages=messages[i][1]
+                         }
+                     }
+                     var li01='<li class="person" data-chat='+data_chat+'>' +
                      '<img src='+img_src+' alt="">' +
-                     '<span class="name">'+show_name+'</span>' +
-                     '<span class="time">2:09 PM</span><br>' +
+                     '<span class="name">'+show_name+'</span><br>' +
                      '<span class="preview">'+show_messages+'</span>' +
                      '</li>';
-                 persons.prepend(li01);
-                 var right_div='<div class="chat" data-chat='+data_chat+'>\n' +
-                     '                <div class="conversation-start">\n' +
-                     '                    <span>Today, 6:48 AM</span>\n' +
-                     '                </div>\n' +
-                     '                <div class="bubble you">\n' +
-                     '                    '+messages[0]+'' +
-                     '                </div>\n' +
-                     '                <div class="bubble you">\n' +
-                     '                    '+messages[1]+'' +
-                     '                </div>\n' +
-                     '                <div class="bubble you">\n' +
-                     '                    I was wondering...\n' +
-                     '                </div>\n' +
+                     persons.append(li01);
+                     var right_div='<div class="chat" data-chat='+data_chat+'>\n' +
                      '            </div>';
-                 var right_top=$("div[class=right]>div[class=top]");
-                 right_top.after(right_div);
-                 //var name_span=$("li[data-chat=person1]>span[class=name]")
-                 //var message_span=$("li[data-chat=person1]>span[class=preview]")
-                 //var img=$("li[data-chat=person1]>img")
-                 //name_span.html(name1.username).css("color","red")
-                 //message_span.html(name1.message).css("color","red")
-                 //img.attr("src",""+name1.img+"")
+                     var other_name_div="<div class='chat' style='height: 15px'>"+other_name+"</div>";
+                     right_top.after(right_div);
+                     var active_div=$("div[class=right]>div[data-chat="+data_chat+"]");
+                     for(var i in messages){
+                         if(messages[i][0]=="self"){
+                             active_div.append("<div class='bubble me'>"+messages[i][1]+"</div>");
+                         }else if(messages[i][0]=="other"){
+                             active_div.append("<div class='bubble you'>"+messages[i][1]+"</div>");
+                         }
+                     }
+                 //=====================================
+                 }
+                 var name1=data[0];
  //重新执行index.js中的代码
  document.querySelector('.chat[data-chat=person1]').classList.add('active-chat');
  document.querySelector('.person[data-chat=person1]').classList.add('active');

@@ -204,28 +204,25 @@ class Application:
                                database=sql_database,
                                charset=sql_charset)
         cur1 = conn.cursor()
-        cur2 = conn.cursor()
-        cur3 = conn.cursor()
-        # sql = "select * from Users;"
-        sql1 = "select u.user_id,u.user_name,i.userinfo_img from Users as u inner join Userinfo as i on " \
-               "u.user_id=i.userinfo_uid;"
-        cur1.execute(sql1)
-        # sql2="select messages_info from Messages limit 1;"
-        sql2="select messages_userid,messages_atid,messages_info from Messages;"
-        sql3="select Users.user_id,Users.user_name,Userinfo.userinfo_img,Messages.messages_userid,\
+        cur2=conn.cursor()
+        sql1="select Users.user_id,Users.user_name,Userinfo.userinfo_img,Messages.messages_userid,\
                 Messages.messages_atid,Messages.messages_info \
                 from Users,Userinfo,Messages \
                 where Users.user_id=Userinfo.userinfo_uid and Users.user_id=messages_userid;"
-        cur3.execute(sql3)
+        sql2="select Users.user_name as other_name " \
+             "from Users,Messages" \
+             " where Users.user_id=Messages.messages_atid " \
+             "order by Messages.messages_id;"
+        cur1.execute(sql1)
         cur2.execute(sql2)
-        data1 = cur1.fetchall()
-        data2 = cur2.fetchall()
-        data3=cur3.fetchall()
-        # print(data2)
+        data1=cur1.fetchall()
+        data2=cur2.fetchall()
         para = []
-        for i in data3:
-            text={"id":i[0],"username": i[1], "img": i[2],"myid":i[3],"othersid":i[4],"message":i[5]}
+        num=0
+        for i in data1:
+            text={"id":i[0],"username": i[1], "img": i[2],"myid":i[3],"othersid":i[4],"message":i[5],"other_name":data2[num][0]}
             para.append(text)
+            num+=1
         # for i in data1:
         #     # print(i)
         #     text = {"id": i[0], "username": i[1], "img": i[2],"message":data2}
