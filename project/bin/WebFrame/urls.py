@@ -8,5 +8,6 @@ urls=[
     ("/login",login),
     ("/regis",register),
     ("/regis_submit",register_submit),
-    ("/exit",exit)
+    ("/exit",exit),
+    ("/dict",dicts)
 ]

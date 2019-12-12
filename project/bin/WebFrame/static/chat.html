@@ -283,23 +283,26 @@ var move = "ontouchmove" in document ? "touchmove" : "mousemove";
 		})
 // ===============emoji_click====================
     }
-      function emoji_addclick(){
-
-        for(var i=0;i<emojis.length;i++){
-            // $(emojis[i]).attr("onclick","emoji_click();")
-            $(emojis[i]).on("click",function(data){
-                var emjCode=$(data["currentTarget"]).attr("data-emj");
-                var img_obj=we.callback(emjCode);
-                // console.log(emjCode);
-                // console.log(img_obj);
-                reg=/".+"/;
-                var img_src=img_obj.match(reg)[0].replace("\"","").replace("\"","")
-                // console.log(img_src);
-                var chat_text_value=$("#chat_text").html();
-                $("#chat_text").html(chat_text_value+"<img style='width: 25px;height: 25px;' src="+img_src+">")
-            })
-        }
-      }
+      // function emoji_addclick(){
+      //
+      //   for(var i=0;i<emojis.length;i++){
+      //       // $(emojis[i]).attr("onclick","emoji_click();")
+      //       $(emojis[i]).on("click",function(data){
+      //           var emjCode=$(data["currentTarget"]).attr("data-emj");
+      //           var img_obj=we.callback(emjCode);
+      //           // console.log(emjCode);
+      //           // console.log(img_obj);
+      //           reg=/".+"/;
+      //           $("#chat_text").html(chat_text_value+"<img style='width: 25px;height: 25px;' src="+img_src+">")
+      //       })
+      //   }
+      // }   var img_src=img_obj.match(reg)[0].replace("\"","").replace("\"","")
+      //           console.log(img_src);
+      //           var chat_text_value=$("#chat_text").html();
+      //           $("#chat_text").html(chat_text_value+"<img style='width: 25px;height: 25px;' src="+img_src+">")
+      //       })
+      //   }
+      // }
 </script>
 </body>
 
@@ -325,9 +328,25 @@ var move = "ontouchmove" in document ? "touchmove" : "mousemove";
                          continue;
                      }else{
                          users_id.push(data[i].myid);
-                         users.push({"id":data[i].myid,"username":data[i].username,"img":data[i].img,"other_id":data[i].othersid,"other_name":data[i].other_name});
+                         users.push({
+                             "id":data[i].myid,
+                             "username":data[i].username,
+                             "img":data[i].img,
+                             "other_id":data[i].othersid,
+                             // "other_name":data[i].other_name
+                             "other_name":[]
+                         });
                      }
                  }
+                 //添加对方姓名---------
+                 for(var i in users){
+                     for(var c in data){
+                         if(data[c].id==users[i]["id"]){
+                             users[i]["other_name"].push(data[c].other_name)
+                         }
+                     }
+                 }
+                 //--------------------
                  for(var r in users){
                      for(var c in data){
                          if(data[c].id==users[r]["id"]){
@@ -348,7 +367,16 @@ var move = "ontouchmove" in document ? "touchmove" : "mousemove";
                      }
                  }
                  for (var r in users) {
-                     fi_msg.push({"users":{"id":users[r]["id"],"username":users[r]["username"],"img":users[r]["img"],"other_id":users[r]["other_id"],"other_name":users[r]["other_name"]},"message":[]})
+                     fi_msg.push({
+                         "users":{
+                             "id":users[r]["id"],
+                             "username":users[r]["username"],
+                             "img":users[r]["img"],
+                             "other_id":users[r]["other_id"],
+                             "other_name":users[r]["other_name"]
+                         },
+                         "message":[]
+                     })
                  }
                  for (var r in users) {
                      for (var i in all_msg) {
@@ -392,6 +420,16 @@ var move = "ontouchmove" in document ? "touchmove" : "mousemove";
                              active_div.append("<div class='bubble you'>"+messages[i][1]+"</div>");
                          }
                      }
+                     //添加对方姓名div--------
+                     for(var c in fi_msg[i]["users"]["other_name"]){
+                         // fi_msg[i]["users"]["other_name"][c];
+                         active_div.append(
+                             "<div class='bubble me'>" +
+                             ""+fi_msg[i]["users"]["other_name"][c]+"" +
+                             "</div>"
+                         )
+                     }
+                     //---------------------
                  //=====================================
                  }
                  var name1=data[0];

@@ -1,4 +1,5 @@
 from project.bin.WebFrame.sql import *
+import os
 sql=sql()
 def show_time(*args):
     import time
@@ -30,4 +31,9 @@ def register_submit(list):
         return ff
 def exit(*args):
     with open(STATIC_DIR + "/login.html") as f:
+        return f.read()
+def dicts(*args):
+    os.system("python3 /home/tarena/save/project/bin/dict_project/test01.py")#字典项目服务端
+    os.system("python3 /home/tarena/save/project/bin/dict_project/test01.py")#字典项目客户端
+    with open(STATIC_DIR + "/index.html") as f:
         return f.read()
